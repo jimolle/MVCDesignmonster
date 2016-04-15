@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Diagnostics;
 using System.Web.Mvc;
 using MVCDesignmonster.Logging;
+using MVCDesignmonster.Singleton;
 using MVCDesignmonster.WebUI.ViewModels;
 
 namespace MVCDesignmonster.WebUI.Controllers
@@ -30,6 +28,13 @@ namespace MVCDesignmonster.WebUI.Controllers
 
         public ActionResult About()
         {
+            var singleton1 = SessionStats.Instance;
+            var singleton2 = SessionStats.Instance;
+
+
+            Debug.WriteLine(singleton1.GetHashCode());
+            Debug.WriteLine(singleton2.GetHashCode());
+
             ViewBag.Message = "Your application description page.";
 
             return View();

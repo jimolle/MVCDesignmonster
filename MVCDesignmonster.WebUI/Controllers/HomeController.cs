@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MVCDesignmonster.Logging;
 
 namespace MVCDesignmonster.WebUI.Controllers
 {
+    [LoggingFilter]
     public class HomeController : Controller
     {
         public ActionResult Index()

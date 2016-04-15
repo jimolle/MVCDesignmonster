@@ -10,11 +10,11 @@ namespace MVCDesignmonster.WordCount
 {
     public class WordCountAttribute : ValidationAttribute, IClientValidatable
     {
-        public int MaxWords { get; set; }
+        public int WordCount { get; set; }
 
-        public WordCountAttribute(int maxWords) : base ("{0} has too many words.")
+        public WordCountAttribute(int wordCount) : base ("{0} has too many words.")
         {
-            MaxWords = maxWords;
+            WordCount = wordCount;
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
@@ -22,7 +22,7 @@ namespace MVCDesignmonster.WordCount
             if (value != null)
             {
                 var valueAsString = value.ToString();
-                if (valueAsString.Split(' ').Length > MaxWords)
+                if (valueAsString.Split(' ').Length > WordCount)
                 {
                     var errorMessage = FormatErrorMessage(validationContext.DisplayName);
                     return new ValidationResult(errorMessage);
@@ -35,7 +35,7 @@ namespace MVCDesignmonster.WordCount
         {
             var rule = new ModelClientValidationRule();
             rule.ErrorMessage = FormatErrorMessage(metadata.GetDisplayName());
-            rule.ValidationParameters.Add("wordcount", MaxWords);
+            rule.ValidationParameters.Add("wordcount", WordCount);
             rule.ValidationType = "maxwords";
             yield return rule;
         }

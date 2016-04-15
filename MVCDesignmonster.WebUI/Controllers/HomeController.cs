@@ -11,20 +11,9 @@ namespace MVCDesignmonster.WebUI.Controllers
     [LoggingFilter]
     public class HomeController : Controller
     {
-        private TestViewModel _testViewModel;
-
-        public HomeController()
-        {
-            _testViewModel = new TestViewModel()
-            {
-                Text = null,
-                MaxWords = 3 //OBS! HÅRDKODAT även i TestViewModel...
-            };
-        }
-
         public ActionResult Index()
         {
-            return View(_testViewModel);
+            return View();
         }
 
         [HttpPost]
@@ -32,8 +21,8 @@ namespace MVCDesignmonster.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                _testViewModel.Text = inputTestViewModel.Text;
-                return View(_testViewModel);
+                ViewBag.SuccessText = inputTestViewModel.Text;
+                return View();
             }
 
             return View(inputTestViewModel);

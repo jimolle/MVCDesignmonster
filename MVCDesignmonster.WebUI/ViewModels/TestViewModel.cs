@@ -12,7 +12,5 @@ namespace MVCDesignmonster.WebUI.ViewModels
         [Required]
         [WordCount(3, ErrorMessage = "Max 3 words in {0}")]
         public string Text { get; set; }
-
-        public int MaxWords { get; set; }
     }
 }

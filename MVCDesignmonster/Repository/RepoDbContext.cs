@@ -6,6 +6,8 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.WebPages;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using MVCDesignmonster.Models;
 
 namespace MVCDesignmonster.Repository
@@ -13,7 +15,7 @@ namespace MVCDesignmonster.Repository
     public class RepoDbContext : DbContext
     {
         public RepoDbContext()
-            : base("PersonalProfileDb")
+            : base(@"Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\UsersPersonalProfileDb.mdf;Initial Catalog=UsersPersonalProfileDb;Integrated Security=True")
         {
             Database.SetInitializer<RepoDbContext>(new PersonalProfileDbInitializer());
         }

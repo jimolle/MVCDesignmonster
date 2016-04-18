@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
@@ -73,8 +76,15 @@
     <Compile Include="Logging\ILoggingService.cs" />
     <Compile Include="Logging\LoggingFilterAttribute.cs" />
     <Compile Include="Logging\LoggingViewModel.cs" />
+    <Compile Include="Models\Models.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Logging\LoggingServiceWriteToFile.cs" />
+    <Compile Include="Repository\RepoDbContext.cs" />
+    <Compile Include="Repository\WithBaseclass\IDisposedTracker.cs" />
+    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\WithBaseclass\RepoDbContext.cs" />
+    <Compile Include="Repository\WithBaseclass\RepositoryBase.cs" />
+    <Compile Include="Repository\WithBaseclass\StartpageRepository.cs" />
     <Compile Include="SessionStats\SessionStats.cs" />
     <Compile Include="WordCount\WordCountAttribute.cs" />
   </ItemGroup>

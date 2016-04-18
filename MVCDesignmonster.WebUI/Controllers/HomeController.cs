@@ -35,6 +35,9 @@ namespace MVCDesignmonster.WebUI.Controllers
             Debug.WriteLine(singleton1.GetHashCode());
             Debug.WriteLine(singleton2.GetHashCode());
 
+            Debug.WriteLine(singleton2.DoSomeStats(10));
+            Debug.WriteLine(singleton1.DoSomeStats(10));
+
             ViewBag.Message = "Your application description page.";
 
             return View();

@@ -5,6 +5,8 @@
 //$.validator.unobtrusive.adapters.addMinMax("wordcount", "minwords", "maxwords",
 //                                      "minmaxwords", [minAttribute, [maxAttribute]]);
 
+$(document).ready(function () {
+
 $.validator.unobtrusive.adapters.addSingleVal("wordcount", "maxwords");
 $.validator.addMethod("wordcount", function (value, element, maxwords) {
     if (value) {
@@ -25,6 +27,7 @@ $.validator.addMethod("wordcount", function (value, element, minwords) {
     return true;
 });
 
+});
 
 // backup med fungerande addSingleVal ENDAST för maxwords.
 //$.validator.unobtrusive.adapters.addSingleVal("wordcount", "maxwords");

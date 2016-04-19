@@ -13,14 +13,16 @@ namespace MVCDesignmonster.WebUI.Controllers
 {
     public class ProfileController : Controller
     {
-        private RepoDbContext db = new RepoDbContext();
+        private IRepository<Profile> _repo = new SqlRepository<Profile>(new RepoDbContext());
 
         // GET: Profile
         public ActionResult Index()
         {
-            return View(db.Profile.ToList());
+            var test = _repo.Search(n => n.ProfileId == 1);
+            return View(test);
         }
 
+        //    #region TODO
         // GET: Profile/Details/5
         public ActionResult Details(int? id)
         {
@@ -28,7 +30,7 @@ namespace MVCDesignmonster.WebUI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Profile profile = db.Profile.Find(id);
+            Profile profile = _repo.Search(n => n.ProfileId == id).SingleOrDefault();
             if (profile == null)
             {
                 return HttpNotFound();
@@ -36,93 +38,94 @@ namespace MVCDesignmonster.WebUI.Controllers
             return View(profile);
         }
 
-        // GET: Profile/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+        //    // GET: Profile/Create
+        //    public ActionResult Create()
+        //    {
+        //        return View();
+        //    }
 
-        // POST: Profile/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProfileId,Name,Email,PublicPresentationText,ShowPrivatePresentationText,PrivatePresentationText")] Profile profile)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Profile.Add(profile);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //    // POST: Profile/Create
+        //    // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //    // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //    [HttpPost]
+        //    [ValidateAntiForgeryToken]
+        //    public ActionResult Create([Bind(Include = "ProfileId,Name,Email,PublicPresentationText,ShowPrivatePresentationText,PrivatePresentationText")] Profile profile)
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            _repo.Profile.Add(profile);
+        //            _repo.SaveChanges();
+        //            return RedirectToAction("Index");
+        //        }
 
-            return View(profile);
-        }
+        //        return View(profile);
+        //    }
 
-        // GET: Profile/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Profile profile = db.Profile.Find(id);
-            if (profile == null)
-            {
-                return HttpNotFound();
-            }
-            return View(profile);
-        }
+        //    // GET: Profile/Edit/5
+        //    public ActionResult Edit(int? id)
+        //    {
+        //        if (id == null)
+        //        {
+        //            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //        }
+        //        Profile profile = _repo.Profile.Find(id);
+        //        if (profile == null)
+        //        {
+        //            return HttpNotFound();
+        //        }
+        //        return View(profile);
+        //    }
 
-        // POST: Profile/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProfileId,Name,Email,PublicPresentationText,ShowPrivatePresentationText,PrivatePresentationText")] Profile profile)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(profile).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(profile);
-        }
+        //    // POST: Profile/Edit/5
+        //    // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //    // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //    [HttpPost]
+        //    [ValidateAntiForgeryToken]
+        //    public ActionResult Edit([Bind(Include = "ProfileId,Name,Email,PublicPresentationText,ShowPrivatePresentationText,PrivatePresentationText")] Profile profile)
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            _repo.Entry(profile).State = EntityState.Modified;
+        //            _repo.SaveChanges();
+        //            return RedirectToAction("Index");
+        //        }
+        //        return View(profile);
+        //    }
 
-        // GET: Profile/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Profile profile = db.Profile.Find(id);
-            if (profile == null)
-            {
-                return HttpNotFound();
-            }
-            return View(profile);
-        }
+        //    // GET: Profile/Delete/5
+        //    public ActionResult Delete(int? id)
+        //    {
+        //        if (id == null)
+        //        {
+        //            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //        }
+        //        Profile profile = _repo.Profile.Find(id);
+        //        if (profile == null)
+        //        {
+        //            return HttpNotFound();
+        //        }
+        //        return View(profile);
+        //    }
 
-        // POST: Profile/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Profile profile = db.Profile.Find(id);
-            db.Profile.Remove(profile);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //    // POST: Profile/Delete/5
+        //    [HttpPost, ActionName("Delete")]
+        //    [ValidateAntiForgeryToken]
+        //    public ActionResult DeleteConfirmed(int id)
+        //    {
+        //        Profile profile = _repo.Profile.Find(id);
+        //        _repo.Profile.Remove(profile);
+        //        _repo.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //    protected override void Dispose(bool disposing)
+        //    {
+        //        if (disposing)
+        //        {
+        //            _repo.Dispose();
+        //        }
+        //        base.Dispose(disposing);
+        //    }
+        //#endregion
     }
 }

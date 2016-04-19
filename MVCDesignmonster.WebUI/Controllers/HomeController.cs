@@ -72,7 +72,7 @@ namespace MVCDesignmonster.WebUI.Controllers
 
             }
             // after successfully uploading redirect the user
-            return RedirectToAction("actionname", "controller name");
+            return RedirectToAction("SUCCESS", "no controller");
         }
     }
 }

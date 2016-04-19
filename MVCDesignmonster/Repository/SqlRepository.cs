@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 
 namespace MVCDesignmonster.Repository
 {
+    // GENERIC SQL REPO
     public class SqlRepository<T> : IRepository<T>
         where T : class
     {

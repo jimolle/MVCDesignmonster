@@ -1,10 +1,23 @@
-﻿@{
+﻿@model MVCDesignmonster.WebUI.ViewModels.SessionStatsViewModel
+
+@{
     ViewBag.Title = "SessionStatsPage";
 }
 <h2>@ViewBag.Title</h2>
-<h3>@ViewBag.Message</h3>
 
-<p class="lead">
+
+
+<h3>Number of active sessions: @Model.TotalSessions</h3>
+<h3>Number of active logged in users: @Model.LoggedInSessions</h3>
+<h3>Users online:</h3>
+    <ul>
+        @foreach (var user in @Model.LoggedInUsers)
+        {
+            <li>@user</li>
+        }
+    </ul>
+
+@*<p class="lead">
     Visitors online:
     <ul>
         @foreach (var session in MvcApplication.Sessions)
@@ -12,4 +25,4 @@
             <li>@session</li>
         }
     </ul>
-</p>
+</p>*@

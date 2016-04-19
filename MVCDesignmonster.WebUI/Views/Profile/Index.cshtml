@@ -1,14 +1,12 @@
-﻿@model IEnumerable<MVCDesignmonster.Models.Profile>
+﻿@model MVCDesignmonster.Models.Profile
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Profile</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -29,29 +27,29 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => @Model.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Email)
+            @Html.DisplayFor(modelItem => @Model.Email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PublicPresentationText)
+            @Html.DisplayFor(modelItem => @Model.PublicPresentationText)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ShowPrivatePresentationText)
+            @Html.DisplayFor(modelItem => @Model.ShowPrivatePresentationText)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PrivatePresentationText)
+            @Html.DisplayFor(modelItem => @Model.PrivatePresentationText)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProfileId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProfileId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProfileId })
+            @Html.ActionLink("Edit", "Edit", new { id= @Model.ProfileId }) |
+            @Html.ActionLink("Details", "Details", new { id= @Model.ProfileId }) |
+            @Html.ActionLink("Delete", "Delete", new { id= @Model.ProfileId })
         </td>
     </tr>
-}
+
 
 </table>

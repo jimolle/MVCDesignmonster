@@ -1,7 +1,10 @@
 ﻿using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Net.Mime;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using MVCDesignmonster.Logging;
 using MVCDesignmonster.Singleton;
 using MVCDesignmonster.WebUI.ViewModels;
@@ -40,9 +43,24 @@ namespace MVCDesignmonster.WebUI.Controllers
             Debug.WriteLine(singleton2.DoSomeStats(10));
             Debug.WriteLine(singleton1.DoSomeStats(10));
 
-            ViewBag.Message = "Session stats.";
+            // SESSIONSTATS
+            var totalUsers = (int)HttpContext.Application["OnlineUsers"];
 
-            return View();
+
+            //TODO Detta funkade ju inte...
+            var onlineUsers = (from a in Membership.GetAllUsers().Cast<MembershipUser>().ToList()
+                               where a.IsOnline
+                               select a.UserName).ToList();
+
+            var result = new SessionStatsViewModel()
+            {
+                LoggedInUsers = onlineUsers,
+                TotalSessions = totalUsers,
+                LoggedInSessions = onlineUsers.Count,
+            };
+
+            ViewBag.Message = "Session stats.";
+            return View(result);
         }
 
         public ActionResult FileUpload()

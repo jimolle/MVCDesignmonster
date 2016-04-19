@@ -13,12 +13,36 @@ namespace MVCDesignmonster.WebUI.Controllers
 {
     public class ProfileController : Controller
     {
-        private IRepository<Profile> _repo = new SqlRepository<Profile>(new RepoDbContext());
+        // With ProfileRepository
+        private IProfileRepository _repo;
+
+        public ProfileController()
+        {
+            _repo = new ProfileRepository(new RepoDbContext());
+        }
+
+        public ProfileController(IProfileRepository profileRepo)
+        {
+            _repo = profileRepo;
+        }
+
+        //With generic repo
+        //private IRepository<Profile> _repo;
+
+        //public ProfileController()
+        //{
+        //    _repo = new SqlRepository<Profile>(new RepoDbContext());
+        //}
+
+        //public ProfileController(IRepository<Profile> profileRepo)
+        //{
+        //    _repo = profileRepo;
+        //}
 
         // GET: Profile
         public ActionResult Index()
         {
-            var test = _repo.Search(n => n.ProfileId == 1);
+            var test = _repo.GetProfile();
             return View(test);
         }
 
@@ -30,7 +54,8 @@ namespace MVCDesignmonster.WebUI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Profile profile = _repo.Search(n => n.ProfileId == id).SingleOrDefault();
+            //Profile profile = _repo.Search(n => n.ProfileId == id).SingleOrDefault();
+            Profile profile = _repo.GetProfile();
             if (profile == null)
             {
                 return HttpNotFound();

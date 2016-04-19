@@ -11,8 +11,19 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using MVCDesignmonster.Models;
 
 namespace MVCDesignmonster.Repository
-{ 
-    public class RepoDbContext : DbContext
+{
+    public class ApplicationUser : IdentityUser
+    {
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
+        {
+            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
+            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+            // Add custom user claims here
+            return userIdentity;
+        }
+    }
+
+    public class RepoDbContext : IdentityDbContext<ApplicationUser>
     {
         public RepoDbContext()
             : base(@"Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\UsersPersonalProfileDb.mdf;Initial Catalog=UsersPersonalProfileDb;Integrated Security=True")
@@ -92,6 +103,41 @@ namespace MVCDesignmonster.Repository
             };
             foreach (var employer in employers)
                 context.Employers.Add(employer);
+
+
+
+            // USERS AND ROLES
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            string[] roleNames = { "Administrator", "User" };
+            IdentityResult roleResult;
+            foreach (var roleName in roleNames)
+            {
+                if (!roleManager.RoleExists(roleName))
+                {
+                    roleResult = roleManager.Create(new IdentityRole(roleName));
+                }
+            }
+
+            if (!context.Users.Any(u => u.UserName == "admin@admin.com"))
+            {
+                var store = new UserStore<ApplicationUser>(context);
+                var manager = new UserManager<ApplicationUser>(store);
+                var user = new ApplicationUser { UserName = "admin@admin.com" };
+
+                manager.Create(user, "samme1");
+                manager.AddToRole(user.Id, "Administrator");
+            }
+
+            if (!(context.Users.Any(u => u.UserName == "user3@user3.com")))
+            {
+                var userStore = new UserStore<ApplicationUser>(context);
+                var userManager = new UserManager<ApplicationUser>(userStore);
+                var userToInsert = new ApplicationUser { UserName = "user3@user3.com", Email = "user3@user3.com" };
+                userManager.Create(userToInsert, "samme1");
+                userManager.AddToRole(userToInsert.Id, "User");
+            }
+
+            context.SaveChanges();
 
 
             base.Seed(context);

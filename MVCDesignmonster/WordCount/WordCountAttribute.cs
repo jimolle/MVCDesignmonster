@@ -10,11 +10,13 @@ namespace MVCDesignmonster.WordCount
 {
     public class WordCountAttribute : ValidationAttribute, IClientValidatable
     {
-        public int WordCount { get; set; }
+        public int MaxWords { get; set; }
+        public int MinWords { get; set; }
 
-        public WordCountAttribute(int wordCount) : base ("{0} has too many words.")
+        public WordCountAttribute(int minWords, int Maxwords) : base ("{0} has too many or too few words.")
         {
-            WordCount = wordCount;
+            MinWords = minWords;
+            MaxWords = Maxwords;
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
@@ -22,7 +24,8 @@ namespace MVCDesignmonster.WordCount
             if (value != null)
             {
                 var valueAsString = value.ToString();
-                if (valueAsString.Split(' ').Length > WordCount)
+                var wordCountOfvalue = valueAsString.Split(' ').Length;
+                if (wordCountOfvalue > MaxWords || wordCountOfvalue < MinWords)
                 {
                     var errorMessage = FormatErrorMessage(validationContext.DisplayName);
                     return new ValidationResult(errorMessage);
@@ -35,9 +38,21 @@ namespace MVCDesignmonster.WordCount
         {
             var rule = new ModelClientValidationRule();
             rule.ErrorMessage = FormatErrorMessage(metadata.GetDisplayName());
-            rule.ValidationParameters.Add("wordcount", WordCount);
-            rule.ValidationType = "maxwords";
+            //TODO fix min AND max here for client val as well... Also check Scripts/App/CustomValidator.js
+            rule.ValidationParameters.Add("maxwords", MaxWords);
+            rule.ValidationType = "wordcount";
+            rule.ValidationParameters.Add("minwords", MinWords);
+            rule.ValidationType = "wordcount";
             yield return rule;
         }
+
+        //public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
+        //{
+        //    var rule = new ModelClientValidationRule();
+        //    rule.ErrorMessage = FormatErrorMessage(metadata.GetDisplayName());
+        //    rule.ValidationParameters.Add("wordcount", WordCount);
+        //    rule.ValidationType = "maxwords";
+        //    yield return rule;
+        //}
     }
 }

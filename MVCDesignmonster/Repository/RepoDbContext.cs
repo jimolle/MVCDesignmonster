@@ -108,7 +108,7 @@ namespace MVCDesignmonster.Repository
 
             // USERS AND ROLES
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-            string[] roleNames = { "Administrator", "User" };
+            string[] roleNames = { "Admin", "Owner", "User" };
             IdentityResult roleResult;
             foreach (var roleName in roleNames)
             {
@@ -124,16 +124,26 @@ namespace MVCDesignmonster.Repository
                 var manager = new UserManager<ApplicationUser>(store);
                 var user = new ApplicationUser { UserName = "admin@admin.com" };
 
-                manager.Create(user, "samme1");
-                manager.AddToRole(user.Id, "Administrator");
+                manager.Create(user, "password");
+                manager.AddToRole(user.Id, "Admin");
             }
 
-            if (!(context.Users.Any(u => u.UserName == "user3@user3.com")))
+            if (!context.Users.Any(u => u.UserName == "owner@owner.com"))
+            {
+                var store = new UserStore<ApplicationUser>(context);
+                var manager = new UserManager<ApplicationUser>(store);
+                var user = new ApplicationUser { UserName = "owner@owner.com" };
+
+                manager.Create(user, "password");
+                manager.AddToRole(user.Id, "Owner");
+            }
+
+            if (!(context.Users.Any(u => u.UserName == "user@user.com")))
             {
                 var userStore = new UserStore<ApplicationUser>(context);
                 var userManager = new UserManager<ApplicationUser>(userStore);
-                var userToInsert = new ApplicationUser { UserName = "user3@user3.com", Email = "user3@user3.com" };
-                userManager.Create(userToInsert, "samme1");
+                var userToInsert = new ApplicationUser { UserName = "user@user.com", Email = "user@user.com" };
+                userManager.Create(userToInsert, "password");
                 userManager.AddToRole(userToInsert.Id, "User");
             }
 

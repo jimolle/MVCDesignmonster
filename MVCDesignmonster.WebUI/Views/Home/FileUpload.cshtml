@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<address>
+
+    @using (Html.BeginForm("FileUpload", "Home", FormMethod.Post,
+                                    new { enctype = "multipart/form-data" }))
+    {
+        <label for="file">Upload Image:</label>
+        <input type="file" name="file" id="file" style="width: 100%;" />
+        <input type="submit" value="Upload" class="submit" />
+    }
+</address>
+
+<address>
+    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
+    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+</address>

@@ -28,7 +28,7 @@ namespace MVCDesignmonster.WebUI.Controllers
             return View(inputTestViewModel);
         }
 
-        public ActionResult About()
+        public ActionResult SessionStatsPage()
         {
             var singleton1 = SessionStats.Instance;
             var singleton2 = SessionStats.Instance;
@@ -40,17 +40,19 @@ namespace MVCDesignmonster.WebUI.Controllers
             Debug.WriteLine(singleton2.DoSomeStats(10));
             Debug.WriteLine(singleton1.DoSomeStats(10));
 
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Session stats.";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult FileUpload()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Try some image uploading.";
 
             return View();
         }
+
+        [HttpPost]
         public ActionResult FileUpload(HttpPostedFileBase file)
         {
             if (file != null)

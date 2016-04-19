@@ -5,7 +5,7 @@
 
 # Sammes add
 packages/
-MVCDesignmonster.WebUI\App_Data
+MVCDesignmonster.WebUI/App_Data
 
 =======
 >>>>>>> 339a91d1f3e2187a87c48d80942e97cf115ae20e

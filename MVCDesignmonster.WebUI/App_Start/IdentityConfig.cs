@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
+using MVCDesignmonster.Service;
 using MVCDesignmonster.WebUI.Models;
 
 namespace MVCDesignmonster.WebUI
@@ -69,7 +70,7 @@ namespace MVCDesignmonster.WebUI
             // You can write your own provider and plug it in here.
             manager.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<ApplicationUser>
             {
-                MessageFormat = "Your security code is {0}"
+                MessageFormat = "[SMS LOGIN] Your security code is: {0}"
             });
             manager.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<ApplicationUser>
             {
@@ -77,7 +78,7 @@ namespace MVCDesignmonster.WebUI
                 BodyFormat = "Your security code is {0}"
             });
             manager.EmailService = new EmailService();
-            manager.SmsService = new SmsService();
+            manager.SmsService = new SmsFakeService();
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {

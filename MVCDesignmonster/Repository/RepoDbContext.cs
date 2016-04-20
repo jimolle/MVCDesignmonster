@@ -122,7 +122,7 @@ namespace MVCDesignmonster.Repository
             {
                 var store = new UserStore<ApplicationUser>(context);
                 var manager = new UserManager<ApplicationUser>(store);
-                var user = new ApplicationUser { UserName = "admin@admin.com" };
+                var user = new ApplicationUser { UserName = "admin@admin.com", Email = "admin@admin.com"};
 
                 manager.Create(user, "password");
                 manager.AddToRole(user.Id, "Admin");
@@ -132,7 +132,7 @@ namespace MVCDesignmonster.Repository
             {
                 var store = new UserStore<ApplicationUser>(context);
                 var manager = new UserManager<ApplicationUser>(store);
-                var user = new ApplicationUser { UserName = "owner@owner.com" };
+                var user = new ApplicationUser { UserName = "owner@owner.com", Email = "owner@owner.co"};
 
                 manager.Create(user, "password");
                 manager.AddToRole(user.Id, "Owner");

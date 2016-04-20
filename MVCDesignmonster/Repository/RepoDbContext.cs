@@ -26,8 +26,9 @@ namespace MVCDesignmonster.Repository
     public class RepoDbContext : IdentityDbContext<ApplicationUser>
     {
         public RepoDbContext()
-            //: base("DatabaseJustForScaffolding")
-            : base(@"Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\UsersPersonalProfileDb.mdf;Initial Catalog=UsersPersonalProfileDb;Integrated Security=True")
+        //: base("DatabaseJustForScaffolding")
+            : base("CvDb", throwIfV1Schema: false)
+            //: base(@"Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\UsersPersonalProfileDb.mdf;Initial Catalog=UsersPersonalProfileDb;Integrated Security=True")
         {
             Database.SetInitializer<RepoDbContext>(new PersonalProfileDbInitializer());
         }

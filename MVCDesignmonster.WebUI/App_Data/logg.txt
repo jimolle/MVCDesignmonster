@@ -599,3 +599,10 @@ Controller: Home Action: Index UserName: user@user.com TimeStamp: 2016-04-20 16:
 Controller: Home Action: RenderMenu UserName: user@user.com TimeStamp: 2016-04-20 16:09:24
 Controller: Home Action: SessionStatsPage UserName: user@user.com TimeStamp: 2016-04-20 16:09:25
 Controller: Home Action: RenderMenu UserName: user@user.com TimeStamp: 2016-04-20 16:09:25
+Controller: Home Action: Index UserName: Anonymous TimeStamp: 2016-04-20 20:33:17
+Controller: Home Action: Index UserName: Anonymous TimeStamp: 2016-04-20 20:45:15
+Controller: Home Action: Index UserName: admin@admin.com TimeStamp: 2016-04-20 20:45:38
+Controller: Home Action: Index UserName: admin@admin.com TimeStamp: 2016-04-20 20:45:40
+Controller: Home Action: SessionStatsPage UserName: admin@admin.com TimeStamp: 2016-04-20 20:45:41
+Controller: Home Action: Index UserName: Anonymous TimeStamp: 2016-04-20 20:45:44
+Controller: Home Action: SessionStatsPage UserName: Anonymous TimeStamp: 2016-04-20 20:45:44

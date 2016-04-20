@@ -22,7 +22,7 @@ namespace MVCDesignmonster.WebUI.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("CvDb", throwIfV1Schema: false)
         {
         }
 

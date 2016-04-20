@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity;
 
 namespace MVCDesignmonster.Service
 {
-    public class SmsFakeService : IIdentityMessageService
+    public class FakeSmsService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)
         {

@@ -101,7 +101,7 @@
     <Compile Include="Repository\WithBaseclass\RepoDbContext.cs" />
     <Compile Include="Repository\WithBaseclass\RepositoryBase.cs" />
     <Compile Include="Repository\WithBaseclass\StartpageRepository.cs" />
-    <Compile Include="Service\SmsFakeService.cs" />
+    <Compile Include="Service\FakeSmsService.cs" />
     <Compile Include="SessionStats\SessionStats.cs" />
     <Compile Include="WordCount\WordCountAttribute.cs" />
   </ItemGroup>

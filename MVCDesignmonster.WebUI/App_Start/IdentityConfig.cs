@@ -78,7 +78,7 @@ namespace MVCDesignmonster.WebUI
                 BodyFormat = "Your security code is {0}"
             });
             manager.EmailService = new EmailService();
-            manager.SmsService = new SmsFakeService();
+            manager.SmsService = new FakeSmsService();
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {

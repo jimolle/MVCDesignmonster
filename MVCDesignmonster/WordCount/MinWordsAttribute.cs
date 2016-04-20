@@ -1,20 +1,16 @@
-﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace MVCDesignmonster.WordCount
 {
-    public class MaxWordsAttribute : ValidationAttribute, IClientValidatable
+    public class MinWordsAttribute : ValidationAttribute, IClientValidatable
     {
-        public int MaxWords { get; set; }
+        public int MinWords { get; set; }
 
-        public MaxWordsAttribute(int maxWords) : base("{0} has too many words.")
+        public MinWordsAttribute(int minWords) : base("{0} has too few words.")
         {
-            MaxWords = maxWords;
+            MinWords = minWords;
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
@@ -22,7 +18,7 @@ namespace MVCDesignmonster.WordCount
             if (value != null)
             {
                 var valueAsString = value.ToString();
-                if (valueAsString.Split(' ').Length > MaxWords)
+                if (valueAsString.Split(' ').Length < MinWords)
                 {
                     var errorMessage = FormatErrorMessage(validationContext.DisplayName);
                     return new ValidationResult(errorMessage);
@@ -35,8 +31,8 @@ namespace MVCDesignmonster.WordCount
         {
             var rule = new ModelClientValidationRule();
             rule.ErrorMessage = FormatErrorMessage(metadata.GetDisplayName());
-            rule.ValidationParameters.Add("wordcount", MaxWords);
-            rule.ValidationType = "maxwords";
+            rule.ValidationParameters.Add("wordcount", MinWords);
+            rule.ValidationType = "minwords";
             yield return rule;
         }
     }

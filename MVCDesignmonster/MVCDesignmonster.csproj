@@ -104,6 +104,7 @@
     <Compile Include="Service\FakeSmsService.cs" />
     <Compile Include="SessionStats\SessionStats.cs" />
     <Compile Include="WordCount\MaxWordsAttribute.cs" />
+    <Compile Include="WordCount\MinWordsAttribute.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

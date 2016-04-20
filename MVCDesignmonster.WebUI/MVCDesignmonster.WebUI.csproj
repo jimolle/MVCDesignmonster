@@ -246,6 +246,11 @@
     <Content Include="Views\Profile\Edit.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Shared\_MenuPartial.cshtml" />
+    <Content Include="Views\Home\Message.cshtml" />
+    <Content Include="Views\Shared\_menuAnonymous.cshtml" />
+    <Content Include="Views\Shared\_menuUser.cshtml" />
+    <Content Include="Views\Shared\_menuAdmin.cshtml" />
+    <Content Include="Views\Shared\_menuOwner.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

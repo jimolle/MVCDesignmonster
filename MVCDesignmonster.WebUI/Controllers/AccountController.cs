@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using MVCDesignmonster.Singleton;
 using MVCDesignmonster.WebUI.Models;
 
 namespace MVCDesignmonster.WebUI.Controllers
@@ -79,6 +80,7 @@ namespace MVCDesignmonster.WebUI.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    SessionStats.Instance.AddOneLoggedIn();
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -391,6 +393,8 @@ namespace MVCDesignmonster.WebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            SessionStats.Instance.RemoveOneLoggedIn();
+
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }

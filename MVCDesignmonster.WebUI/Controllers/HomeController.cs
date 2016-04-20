@@ -14,6 +14,25 @@ namespace MVCDesignmonster.WebUI.Controllers
     [LoggingFilter]
     public class HomeController : Controller
     {
+        public ActionResult RenderMenu()
+        {
+            var menuToRender = "_menuAnonymous";
+            if (User.IsInRole("Admin"))
+            {
+                menuToRender = "_menuAdmin";
+            }
+            else if (User.IsInRole("Owner"))
+            {
+                menuToRender = "_menuOwner";
+            }
+            else if (User.IsInRole("User"))
+            {
+                menuToRender = "_menuUser";
+            }
+
+            return PartialView(menuToRender);
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -40,23 +59,15 @@ namespace MVCDesignmonster.WebUI.Controllers
             Debug.WriteLine(singleton1.GetHashCode());
             Debug.WriteLine(singleton2.GetHashCode());
 
-            Debug.WriteLine(singleton2.DoSomeStats(10));
-            Debug.WriteLine(singleton1.DoSomeStats(10));
 
             // SESSIONSTATS
-            var totalUsers = (int)HttpContext.Application["OnlineUsers"];
-
-
-            //TODO Detta funkade ju inte...
-            var onlineUsers = (from a in Membership.GetAllUsers().Cast<MembershipUser>().ToList()
-                               where a.IsOnline
-                               select a.UserName).ToList();
+            //var totalUsers = (int)HttpContext.Application["OnlineUsers"];
 
             var result = new SessionStatsViewModel()
             {
-                LoggedInUsers = onlineUsers,
-                TotalSessions = totalUsers,
-                LoggedInSessions = onlineUsers.Count,
+                //LoggedInUsers = onlineUsers,
+                TotalSessions = SessionStats.Instance.SessionCount,
+                LoggedInSessions = SessionStats.Instance.LoggedIn,
             };
 
             ViewBag.Message = "Session stats.";

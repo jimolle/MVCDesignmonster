@@ -9,13 +9,13 @@
 
 <h3>Number of active sessions: @Model.TotalSessions</h3>
 <h3>Number of active logged in users: @Model.LoggedInSessions</h3>
-<h3>Users online:</h3>
+@*<h3>Users online:</h3>
     <ul>
         @foreach (var user in @Model.LoggedInUsers)
         {
             <li>@user</li>
         }
-    </ul>
+    </ul>*@
 
 @*<p class="lead">
     Visitors online:

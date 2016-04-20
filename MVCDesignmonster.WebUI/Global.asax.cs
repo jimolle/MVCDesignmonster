@@ -5,11 +5,15 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using MVCDesignmonster.Singleton;
 
 namespace MVCDesignmonster.WebUI
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        // TODO Eller ska man ha en instans... troligen inte
+        //public SessionStats SessionStatsSingleTon = SessionStats.Instance;
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -17,24 +21,35 @@ namespace MVCDesignmonster.WebUI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Application["OnlineUsers"] = 0;
+            //SessionStatsSingleTon = SessionStats.Instance;
         }
 
         void Session_Start(object sender, EventArgs e)
         {
-            Application.Lock();
-            Application["OnlineUsers"] = (int)Application["OnlineUsers"] + 1;
-            Application.UnLock();
+            SessionStats.Instance.AddOneNewSession();
         }
         void Session_End(object sender, EventArgs e)
         {
-            Application.Lock();
-            Application["OnlineUsers"] = (int)Application["OnlineUsers"] - 1;
-            Application.UnLock();
+            SessionStats.Instance.RemoveOneNewSession();
+            //SessionStatsSingleTon.RemoveOneNewSession();
         }
 
+        // OLD VERSION 2
+        //void Session_Start(object sender, EventArgs e)
+        //{
+        //    Application.Lock();
+        //    Application["OnlineUsers"] = (int)Application["OnlineUsers"] + 1;
+        //    Application.UnLock();
+        //}
+        //void Session_End(object sender, EventArgs e)
+        //{
+        //    Application.Lock();
+        //    Application["OnlineUsers"] = (int)Application["OnlineUsers"] - 1;
+        //    Application.UnLock();
+        //}
 
-        //// Session statistics OLD Version
+
+        //// OLD VERSION !
         //private static List<string> _sessionInfo;
         //private static readonly object padlock = new object();
 

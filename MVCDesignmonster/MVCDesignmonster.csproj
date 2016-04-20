@@ -97,8 +97,8 @@
     <Compile Include="Repository\IEducationRepository.cs" />
     <Compile Include="Repository\IEmployerRepository.cs" />
     <Compile Include="Repository\IProfileRepository.cs" />
-    <Compile Include="Repository\IStartpageRepository.cs" />
     <Compile Include="Repository\ILogRepository.cs" />
+    <Compile Include="Repository\IStartpageRepository.cs" />
     <Compile Include="Repository\LogRepository.cs" />
     <Compile Include="Repository\ProfileRepository.cs" />
     <Compile Include="Repository\RepoDbContext.cs" />

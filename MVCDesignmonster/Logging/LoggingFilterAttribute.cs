@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 
@@ -21,6 +22,10 @@ namespace MVCDesignmonster.Logging
                 if (HttpContext.Current.User.Identity.IsAuthenticated)
                     userName = HttpContext.Current.User.Identity.Name;
 
+                //TESTING
+                var test1 = filterContext.HttpContext.Request.Url;
+                var test2 = filterContext.HttpContext.Request.RawUrl; //Denna för komplett url
+
                 var loggingVM = new LoggingViewModel()
                 {
                     Action = filterContext.ActionDescriptor.ActionName,
@@ -29,8 +34,17 @@ namespace MVCDesignmonster.Logging
                     TimeStamp = DateTime.Now
                 };
 
-                var logger = new LoggingServiceWriteToFile();
-                logger.Log(loggingVM);
+                var listOfLoggers = new List<ILoggingService>()
+                {
+                    new LoggingServiceWriteToDb(),
+                    new LoggingServiceWriteToFile()
+                };
+
+                foreach (var logger in listOfLoggers)
+                {
+                    logger.Log(loggingVM);
+                }
+                
             }
         }
     }

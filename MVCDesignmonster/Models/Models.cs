@@ -50,4 +50,12 @@ namespace MVCDesignmonster.Models
         public DateTime? EndDate { get; set; }
         public bool Public { get; set; }
     }
+
+    public class StatLog
+    {
+        public int StatLogId { get; set; }
+        public string UserName { get; set; }
+        public string Url { get; set; }
+        public DateTime TimeStamp { get; set; }
+    }
 }

@@ -88,16 +88,23 @@
   <ItemGroup>
     <Compile Include="Logging\ILoggingService.cs" />
     <Compile Include="Logging\LoggingFilterAttribute.cs" />
+    <Compile Include="Logging\LoggingServiceWriteToDb.cs" />
     <Compile Include="Logging\LoggingViewModel.cs" />
     <Compile Include="Models\Models.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Logging\LoggingServiceWriteToFile.cs" />
+    <Compile Include="Repository\EducationRepository.cs" />
+    <Compile Include="Repository\IEducationRepository.cs" />
+    <Compile Include="Repository\IEmployerRepository.cs" />
     <Compile Include="Repository\IProfileRepository.cs" />
+    <Compile Include="Repository\IStartpageRepository.cs" />
+    <Compile Include="Repository\ILogRepository.cs" />
+    <Compile Include="Repository\LogRepository.cs" />
     <Compile Include="Repository\ProfileRepository.cs" />
     <Compile Include="Repository\RepoDbContext.cs" />
-    <Compile Include="Repository\SqlRepository.cs" />
+    <Compile Include="Repository\Generic\SqlRepository.cs" />
     <Compile Include="Repository\WithBaseclass\IDisposedTracker.cs" />
-    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\Generic\IRepository.cs" />
     <Compile Include="Repository\WithBaseclass\RepoDbContext.cs" />
     <Compile Include="Repository\WithBaseclass\RepositoryBase.cs" />
     <Compile Include="Repository\WithBaseclass\StartpageRepository.cs" />

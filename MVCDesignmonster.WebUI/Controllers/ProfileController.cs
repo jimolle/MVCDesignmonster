@@ -143,14 +143,11 @@ namespace MVCDesignmonster.WebUI.Controllers
         //        return RedirectToAction("Index");
         //    }
 
-        //    protected override void Dispose(bool disposing)
-        //    {
-        //        if (disposing)
-        //        {
-        //            _repo.Dispose();
-        //        }
-        //        base.Dispose(disposing);
-        //    }
+        protected override void Dispose(bool disposing)
+        {
+            _repo.Dispose();
+            base.Dispose(disposing);
+        }
         //#endregion
     }
 }

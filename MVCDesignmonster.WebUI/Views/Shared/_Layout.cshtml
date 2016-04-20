@@ -21,13 +21,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 @*@Html.Partial("_MenuPartial")*@
-                @Html.Action("RenderMenu", "Home")
-                @*<ul class="nav navbar-nav">
+                @*@Html.Action("RenderMenu", "Home")*@
+                <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("SessionStats", "SessionStatsPage", "Home")</li>
                     <li>@Html.ActionLink("FileUpload", "FileUpload", "Home")</li>
                     <li>@Html.ActionLink("Profile", "Index", "Profile")</li>
-                </ul>*@
+                    <li>@Html.ActionLink("Educations", "Index", "Education")</li>
+                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

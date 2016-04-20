@@ -26,6 +26,7 @@ namespace MVCDesignmonster.Repository
     public class RepoDbContext : IdentityDbContext<ApplicationUser>
     {
         public RepoDbContext()
+            //: base("DatabaseJustForScaffolding")
             : base(@"Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\UsersPersonalProfileDb.mdf;Initial Catalog=UsersPersonalProfileDb;Integrated Security=True")
         {
             Database.SetInitializer<RepoDbContext>(new PersonalProfileDbInitializer());
@@ -35,6 +36,7 @@ namespace MVCDesignmonster.Repository
         public DbSet<Profile> Profile { get; set; }
         public DbSet<Education> Educations { get; set; }
         public DbSet<Employer> Employers { get; set; }
+        public DbSet<StatLog> StatLogs { get; set; }
     }
 
     public class PersonalProfileDbInitializer : DropCreateDatabaseAlways<RepoDbContext>

@@ -1,0 +1,17 @@
+﻿@using Microsoft.AspNet.Identity
+@if (User.IsInRole("Admin"))
+{
+    <h2>Admin</h2>
+}
+else if (User.IsInRole("Owner"))
+{
+    <h2>Owner</h2>
+}
+else if (User.IsInRole("User"))
+{
+    <h2>User</h2>
+}
+else
+{
+    <h2>Anonymous</h2>
+}

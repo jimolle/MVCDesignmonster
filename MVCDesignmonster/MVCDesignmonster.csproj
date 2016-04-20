@@ -103,7 +103,7 @@
     <Compile Include="Repository\WithBaseclass\StartpageRepository.cs" />
     <Compile Include="Service\FakeSmsService.cs" />
     <Compile Include="SessionStats\SessionStats.cs" />
-    <Compile Include="WordCount\WordCountAttribute.cs" />
+    <Compile Include="WordCount\MaxWordsAttribute.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -10,7 +10,8 @@ namespace MVCDesignmonster.WebUI.ViewModels
     public class TestViewModel
     {
         [Required]
-        [WordCount(2, 4, ErrorMessage = "Min 2, Max 4 words in {0}")]
+        [MaxWords(4, ErrorMessage = "Max 4 words in {0}")]
+        [MinWords(2, ErrorMessage = "Min 2 words in {0}")]
         public string Text { get; set; }
     }
 }

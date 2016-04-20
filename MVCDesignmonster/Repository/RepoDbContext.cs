@@ -69,8 +69,8 @@ namespace MVCDesignmonster.Repository
                     Name = "DirtShoweling101",
                     Description = "A good education about showeling dirt",
                     SchoolName = "FiveGardens",
-                    StartDate = DateTime.Parse("2010-01-01 00:00:00"),
-                    EndDate = DateTime.Parse("2011-01-01 00:00:00"),
+                    StartDate = DateTime.Parse("2010-01-01"),
+                    EndDate = DateTime.Parse("2011-01-01"),
                     Public = true
                 },
                 new Education()
@@ -78,8 +78,8 @@ namespace MVCDesignmonster.Repository
                     Name = "Databases101",
                     Description = "A good education about DbContext",
                     SchoolName = "SchoolOfDatabases",
-                    StartDate = DateTime.Parse("2012-01-01 00:00:00"),
-                    EndDate = DateTime.Parse("2013-01-01 00:00:00"),
+                    StartDate = DateTime.Parse("2012-01-01"),
+                    EndDate = DateTime.Parse("2013-01-01"),
                     Public = true
                 }
             };
@@ -92,15 +92,15 @@ namespace MVCDesignmonster.Repository
                 new Employer()
                 {
                     Name = "Bofors AB",
-                    StartDate = DateTime.Parse("2013-01-01 00:00:00"),
-                    EndDate = DateTime.Parse("2013-06-01 00:00:00"),
+                    StartDate = DateTime.Parse("2013-01-01"),
+                    EndDate = DateTime.Parse("2013-06-01"),
                     Public = true
                 },
                 new Employer()
                 {
                     Name = "Rädda Barnen Pakistan",
-                    StartDate = DateTime.Parse("2014-06-01 00:00:00"),
-                    EndDate = DateTime.Parse("2014-08-31 00:00:00"),
+                    StartDate = DateTime.Parse("2014-06-01"),
+                    EndDate = DateTime.Parse("2014-08-31"),
                     Public = true
                 }
             };

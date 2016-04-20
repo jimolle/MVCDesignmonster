@@ -22,7 +22,9 @@ namespace MVCDesignmonster.WebUI.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("CvDb", throwIfV1Schema: false)
+            //: base("CvDb", throwIfV1Schema: false)
+            : base(@"Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\UsersPersonalProfileDb.mdf;Initial Catalog=UsersPersonalProfileDb;Integrated Security=True", throwIfV1Schema: false)
+            
         {
         }
 

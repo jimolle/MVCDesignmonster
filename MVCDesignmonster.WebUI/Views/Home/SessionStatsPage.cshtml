@@ -5,9 +5,8 @@
 }
 <h2>@ViewBag.Title</h2>
 
-<h3>Number of active sessions: @Model.TotalSessions</h3>
-<h3>Number of active logged in users: @Model.LoggedInSessions</h3>
-
+<h3>@Model.SessionStats</h3>
+<br/>
 <h3>Last 5 user actions</h3>
 <table class="table">
     <tr>
@@ -40,7 +39,7 @@
 </table>
 @*<h3>Users online:</h3>
     <ul>
-        @foreach (var user in @Model.LoggedInUsers)
+        @foreach (var user in @Model.TrackedUsers)
         {
             <li>@user</li>
         }

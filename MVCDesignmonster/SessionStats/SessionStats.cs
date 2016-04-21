@@ -9,8 +9,8 @@ namespace MVCDesignmonster.Singleton
     public class SessionStats
     {
         private static readonly SessionStats _instance = new SessionStats();
-        public int SessionCount { get; private set; } = 0;
-        public HashSet<string> LoggedInUsers { get; private set; } = new HashSet<string>();
+        //public int SessionCount { get; private set; } = 0;
+        public List<TrackedUser> TrackedUsers { get; private set; } = new List<TrackedUser>();
 
         static SessionStats()
         {
@@ -29,32 +29,44 @@ namespace MVCDesignmonster.Singleton
                 return _instance;
             }
         }
-        
-        public void AddOneNewSession()
+
+        public void AddOneSession()
         {
-            SessionCount++;
-        }
-        public void RemoveOneNewSession()
-        {
-            if (--SessionCount < 0)
-                SessionCount = 0;
+            var trackedUser = new TrackedUser()
+            {
+                SessionId = System.Web.HttpContext.Current.Session.SessionID,
+                UserName = "Anonymous"
+            };
+            TrackedUsers.Add(trackedUser);
         }
 
-        public void AddOneLoggedIn(string userName)
+        public void RemoveOneSession(string sessionId)
         {
-            // TODO Bygg en lista av usernames som är inloggade här istället och kolla så de är unika
-            // Löser buggen med felräkning vid cookie-auth mest troligt
-            LoggedInUsers.Add(userName);
+            var trackedUser = TrackedUsers.SingleOrDefault(n => n.SessionId == sessionId);
+            TrackedUsers.Remove(trackedUser);
         }
 
-        public void RemoveOneLoggedIn(string userName)
+        public void LoginSession(string userName)
         {
-            LoggedInUsers.Remove(userName);
+            var sessionId = System.Web.HttpContext.Current.Session.SessionID;
+
+            var trackedUser = TrackedUsers.SingleOrDefault(n => n.SessionId == sessionId);
+            trackedUser.UserName = userName;
+        }
+
+        public void LogoutSession(string userName)
+        {
+            var sessionId = System.Web.HttpContext.Current.Session.SessionID;
+
+            var trackedUser = TrackedUsers.SingleOrDefault(n => n.SessionId == sessionId);
+            trackedUser.UserName = "Anonymous";
         }
 
         public string GetSessionStats()
         {
-            return $"{SessionCount} aktiva sessioner varav {LoggedInUsers.Count} påloggade.";
+            var sessions = TrackedUsers.Count;
+            var loggedinSessions = TrackedUsers.Count(n => n.UserName != "Anonymous");
+            return $"{sessions} aktiva sessioner varav {loggedinSessions} påloggade.";
         }
 
     }

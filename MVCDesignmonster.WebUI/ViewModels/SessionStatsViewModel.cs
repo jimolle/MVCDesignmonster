@@ -8,9 +8,8 @@ namespace MVCDesignmonster.WebUI.ViewModels
 {
     public class SessionStatsViewModel
     {
-        //public List<string> LoggedInUsers { get; set; }
-        public int TotalSessions { get; set; }
-        public int LoggedInSessions { get; set; }
+        //public List<string> TrackedUsers { get; set; }
+        public string SessionStats { get; set; }
 
         public List<StatLog> StatLogs { get; set; }
     }

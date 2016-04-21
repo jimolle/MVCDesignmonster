@@ -27,15 +27,14 @@ namespace MVCDesignmonster.WebUI
 
         void Session_Start(object sender, EventArgs e)
         {
-            SessionStats.Instance.AddOneNewSession();
+            SessionStats.Instance.AddOneSession();
         }
         void Session_End(object sender, EventArgs e)
         {
-            // TODO en dictionary/List<TrackedUser> som länkar samman SessionId med UserId,
-            // på så sätt kan man ju ta bort inloggad user när dom bara kryssar rutan...
-            // -> SessionStats.Instance.RemoveUserWithSessionId == SessionID som stängs
-            SessionStats.Instance.RemoveOneNewSession();
-            //SessionStatsSingleTon.RemoveOneNewSession();
+            // Kommer åt sessionId efter det stängts, eller förlängs sessionen dessutom?
+            var sessionId = this.Session.SessionID;
+
+            SessionStats.Instance.RemoveOneSession(sessionId);
         }
 
         // OLD VERSION 2

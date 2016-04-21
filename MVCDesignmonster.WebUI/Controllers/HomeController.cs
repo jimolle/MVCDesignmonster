@@ -76,10 +76,7 @@ namespace MVCDesignmonster.WebUI.Controllers
 
             var result = new SessionStatsViewModel()
             {
-                //LoggedInUsers = onlineUsers,
-                TotalSessions = SessionStats.Instance.SessionCount,
-                LoggedInSessions = SessionStats.Instance.LoggedInUsers.Count,
-
+                SessionStats = SessionStats.Instance.GetSessionStats(),
                 StatLogs = statLog
             };
 

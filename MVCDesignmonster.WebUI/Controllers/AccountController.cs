@@ -80,7 +80,7 @@ namespace MVCDesignmonster.WebUI.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    SessionStats.Instance.AddOneLoggedIn();
+                    SessionStats.Instance.AddOneLoggedIn(User.Identity.GetUserName());
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -393,7 +393,7 @@ namespace MVCDesignmonster.WebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            SessionStats.Instance.RemoveOneLoggedIn();
+            SessionStats.Instance.RemoveOneLoggedIn(User.Identity.GetUserName());
 
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");

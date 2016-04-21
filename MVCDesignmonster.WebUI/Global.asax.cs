@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.SessionState;
 using MVCDesignmonster.Singleton;
 
 namespace MVCDesignmonster.WebUI
@@ -30,6 +31,9 @@ namespace MVCDesignmonster.WebUI
         }
         void Session_End(object sender, EventArgs e)
         {
+            // TODO en dictionary/List<TrackedUser> som länkar samman SessionId med UserId,
+            // på så sätt kan man ju ta bort inloggad user när dom bara kryssar rutan...
+            // -> SessionStats.Instance.RemoveUserWithSessionId == SessionID som stängs
             SessionStats.Instance.RemoveOneNewSession();
             //SessionStatsSingleTon.RemoveOneNewSession();
         }

@@ -10,7 +10,7 @@ namespace MVCDesignmonster.Singleton
     {
         private static readonly SessionStats _instance = new SessionStats();
         public int SessionCount { get; private set; } = 0;
-        public int LoggedIn { get; private set; } = 0;
+        public HashSet<string> LoggedInUsers { get; private set; } = new HashSet<string>();
 
         static SessionStats()
         {
@@ -36,22 +36,36 @@ namespace MVCDesignmonster.Singleton
         }
         public void RemoveOneNewSession()
         {
-            SessionCount--;
+            if (--SessionCount < 0)
+                SessionCount = 0;
         }
 
-        public void AddOneLoggedIn()
+        public void AddOneLoggedIn(string userName)
         {
             // TODO Bygg en lista av usernames som är inloggade här istället och kolla så de är unika
             // Löser buggen med felräkning vid cookie-auth mest troligt
-            LoggedIn++;
+            LoggedInUsers.Add(userName);
         }
 
-        public void RemoveOneLoggedIn()
+        public void RemoveOneLoggedIn(string userName)
         {
-            LoggedIn--;
+            LoggedInUsers.Remove(userName);
+        }
+
+        public string GetSessionStats()
+        {
+            return $"{SessionCount} aktiva sessioner varav {LoggedInUsers.Count} påloggade.";
         }
 
     }
+
+    public class TrackedUser
+    {
+        public string SessionId { get; set; }
+        public string UserName { get; set; }
+    }
+
+
 
     // From C# In Depth
     public sealed class SingletonFullyLazy

@@ -67,7 +67,7 @@ namespace MVCDesignmonster.WebUI.Controllers
             {
                 //LoggedInUsers = onlineUsers,
                 TotalSessions = SessionStats.Instance.SessionCount,
-                LoggedInSessions = SessionStats.Instance.LoggedIn,
+                LoggedInSessions = SessionStats.Instance.LoggedInUsers.Count,
             };
 
             ViewBag.Message = "Session stats.";

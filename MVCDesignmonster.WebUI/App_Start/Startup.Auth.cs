@@ -33,7 +33,11 @@ namespace MVCDesignmonster.WebUI
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
-                }
+                },
+
+                // TODO Mek för att få SessionStats att stämma
+                SlidingExpiration = true,
+                ExpireTimeSpan = TimeSpan.FromMinutes(1)
             });            
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 

@@ -33,6 +33,11 @@ namespace MVCDesignmonster.Repository
             Database.SetInitializer<RepoDbContext>(new PersonalProfileDbInitializer());
         }
 
+        public static RepoDbContext Create()
+        {
+            return new RepoDbContext();
+        }
+
         public DbSet<Startpage> Startpage { get; set; }
         public DbSet<Profile> Profile { get; set; }
         public DbSet<Education> Educations { get; set; }

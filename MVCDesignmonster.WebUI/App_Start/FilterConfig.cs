@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using MVCDesignmonster.Logging;
+using System.Web;
 using System.Web.Mvc;
 
 namespace MVCDesignmonster.WebUI
@@ -8,6 +9,7 @@ namespace MVCDesignmonster.WebUI
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new LoggingFilterAttribute());
         }
     }
 }

@@ -12,7 +12,6 @@ using MVCDesignmonster.WebUI.Models;
 namespace MVCDesignmonster.WebUI.Controllers
 {
     [Authorize]
-    [LoggingFilter]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;

@@ -12,7 +12,6 @@ using MVCDesignmonster.Repository;
 
 namespace MVCDesignmonster.WebUI.Controllers
 {
-    [LoggingFilter]
     public class ProfileController : Controller
     {
         // With ProfileRepository

@@ -11,11 +11,11 @@ using Microsoft.Owin.Security;
 using MVCDesignmonster.Logging;
 using MVCDesignmonster.Singleton;
 using MVCDesignmonster.WebUI.Models;
+using MVCDesignmonster.Repository;
 
 namespace MVCDesignmonster.WebUI.Controllers
 {
     [Authorize]
-    [LoggingFilter]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;

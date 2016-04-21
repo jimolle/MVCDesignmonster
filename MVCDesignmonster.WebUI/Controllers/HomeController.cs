@@ -12,7 +12,6 @@ using MVCDesignmonster.WebUI.ViewModels;
 
 namespace MVCDesignmonster.WebUI.Controllers
 {
-    [LoggingFilter]
     public class HomeController : Controller
     {
         public ActionResult RenderMenu()

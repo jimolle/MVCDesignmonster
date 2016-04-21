@@ -1,28 +1,28 @@
-﻿@model MVCDesignmonster.WebUI.ViewModels.TestViewModel
+﻿@model MVCDesignmonster.WebUI.ViewModels.StartPageViewModel
 
 @{
     ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
-    <h1>MVCDesignmonster</h1>
-    <p class="lead">Bla bla bla.</p>
+    <h1>@Model.WelcomeTitle</h1>
+    <p class="lead">@Model.WelcomeText</p>
 </div>
 
 <div class="row">
     <div class="col-md-6">
         <h2>Testing MinWords attribute</h2>
-        <h3>Max 3 words.</h3>
+        <h3>...</h3>
 
             @using (Html.BeginForm())
             {
-                <div class="form-group">
+                @*<div class="form-group">
                     @Html.TextBoxFor(n => n.Text, null, htmlAttributes: new {@class = "form-control", placeholder = "text"})
                 </div>
                 <div class="form-group">
                     @Html.ValidationMessageFor(n => n.Text, "", new {@class = "text-danger"})
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="submit" class="btn btn-default">Submit</button>*@
             }
         @if (ViewBag.SuccessText != null)
         {
@@ -33,7 +33,7 @@
     <div class="col-md-6">
         <h2>BUGS</h2>
         <ul>
-            <li class="alert alert-danger">You have to access repo-DB before login due to the way seeding is implemented.</li>
+            <li class="alert alert-success">DB-initalization seems to be OK.</li>
             <li class="alert alert-danger">SessionStats kan bli negativ i antalet inloggade users om man loggar ut från att ha varit cookie-authad.</li>
             <li class="alert alert-success">Two-Factor FakeSmsService skriver till Debug Output.</li>
         </ul>

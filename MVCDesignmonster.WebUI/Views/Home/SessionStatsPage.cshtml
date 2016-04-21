@@ -5,10 +5,39 @@
 }
 <h2>@ViewBag.Title</h2>
 
-
-
 <h3>Number of active sessions: @Model.TotalSessions</h3>
 <h3>Number of active logged in users: @Model.LoggedInSessions</h3>
+
+<h3>Last 5 user actions</h3>
+<table class="table">
+    <tr>
+        <th>
+            RawUrl
+        </th>
+        <th>
+            UserName
+        </th>
+        <th>
+            TimeStamp
+        </th>
+    </tr>
+
+    @foreach (var item in Model.StatLogs)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Url)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeStamp)
+            </td>
+        </tr>
+    }
+
+</table>
 @*<h3>Users online:</h3>
     <ul>
         @foreach (var user in @Model.LoggedInUsers)

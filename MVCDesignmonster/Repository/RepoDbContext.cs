@@ -46,7 +46,7 @@ namespace MVCDesignmonster.Repository
         {
             var startpage = new Startpage()
             {
-                WelcomeTitle = "Välkommen till den här sidan.",
+                WelcomeTitle = "MVCDesignmonster 2.0",
                 WelcomeText =
                     "[WelcomeText] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at massa dolor. Nulla volutpat nisi et mi scelerisque, eget iaculis risus tristique. Morbi at tellus ligula. Integer vestibulum accumsan diam eget ullamcorper. Suspendisse dapibus est in porttitor finibus. Curabitur dictum risus nec ligula lacinia porta. Duis convallis eleifend mi id auctor. "
             };

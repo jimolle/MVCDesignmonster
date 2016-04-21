@@ -13,9 +13,15 @@ namespace MVCDesignmonster.Logging
             using (var fs = new FileStream(path, FileMode.Append))
             using (var sw = new StreamWriter(fs))
             {
-                sw.Write($"Controller: {loggingViewModel.Controller} Action: {loggingViewModel.Action} UserName: {loggingViewModel.UserName} " +
+                sw.Write($"RawUrl: {loggingViewModel.RawUrl} UserName: {loggingViewModel.UserName} " +
                          $"TimeStamp: {loggingViewModel.TimeStamp}" + Environment.NewLine);
             }
+        }
+
+        public void Dispose()
+        {
+            // Här borde vi aldrig hamna...
+            throw new NotImplementedException();
         }
     }
 }

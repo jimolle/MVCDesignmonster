@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using MVCDesignmonster.Models;
@@ -11,11 +13,11 @@ namespace MVCDesignmonster.Repository
 
         // 2 alt att göra detta.
         IQueryable<Employer> Search(Expression<Func<Employer, bool>> predicate);
-        void GetPublicEmployers();
-        void GetAllEmployers();
+        IEnumerable<Employer> GetPublicEmployers();
+        IEnumerable<Employer> GetAllEmployersEvenPrivate();
 
-        void UpdateEducation(Education education);
-        void DeleteEducation(Education education);
+        void UpdateEmployer(Employer employer);
+        void DeleteEmployer(int employerId);
         void Save();
     }
 }

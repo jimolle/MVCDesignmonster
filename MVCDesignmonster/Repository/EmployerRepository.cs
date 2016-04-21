@@ -3,55 +3,55 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
 using MVCDesignmonster.Models;
 
 namespace MVCDesignmonster.Repository
 {
-    public class EducationRepository : IEducationRepository
+    public class EmployerRepository : IEmployerRepository
     {
         private RepoDbContext _context;
-
-        public EducationRepository()
+        public EmployerRepository()
         {
             _context = new RepoDbContext();
         }
-
-        public EducationRepository(RepoDbContext context)
+        public EmployerRepository(RepoDbContext context)
         {
             this._context = context;
         }
 
 
-        public void CreateEducation(Education education)
+        public void CreateEmployer(Employer employer)
         {
-            _context.Educations.Add(education);
+            _context.Employers.Add(employer);
         }
 
-        public IQueryable<Education> Search(Expression<Func<Education, bool>> predicate)
+        public IQueryable<Employer> Search(Expression<Func<Employer, bool>> predicate)
         {
-            return _context.Educations.Where(predicate);
+            return _context.Employers.Where(predicate);
         }
 
-        public IEnumerable<Education> GetPublicEducations()
+        public IEnumerable<Employer> GetPublicEmployers()
         {
             return Search(n => n.Public == true).ToList();
         }
 
-        public IEnumerable<Education> GetAllEducations()
+        public IEnumerable<Employer> GetAllEmployersEvenPrivate()
         {
-            return _context.Educations.ToList();
+            return _context.Employers.ToList();
         }
 
-        public void UpdateEducation(Education education)
+        public void UpdateEmployer(Employer employer)
         {
-            _context.Entry(education).State = EntityState.Modified;
+            _context.Entry(employer).State = EntityState.Modified;
         }
 
-        public void DeleteEducation(int educationId)
+        public void DeleteEmployer(int employerId)
         {
-            var query = Search(n => n.EducationId == educationId).SingleOrDefault();
+            var query = Search(n => n.EmployerId == employerId).SingleOrDefault();
 
-            _context.Educations.Remove(query);
+            _context.Employers.Remove(query);
         }
 
         public void Save()

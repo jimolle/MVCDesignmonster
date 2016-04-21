@@ -13,125 +13,118 @@ using MVCDesignmonster.Repository;
 namespace MVCDesignmonster.WebUI.Controllers
 {
     [LoggingFilter]
-    public class EducationController : Controller
+    public class EmployerController : Controller
     {
-        // With EducationRepository
-        private IEducationRepository _repo;
+        // With EmployerRepo
+        private IEmployerRepository _repo;
 
-        public EducationController()
+        public EmployerController()
         {
-            _repo = new EducationRepository(new RepoDbContext());
+            _repo = new EmployerRepository(new RepoDbContext());
         }
 
-        public EducationController(IEducationRepository educationRepo)
+        public EmployerController(IEmployerRepository employerRepo)
         {
-            _repo = educationRepo;
+            _repo = employerRepo;
         }
 
-        // GET: Education
+        // GET: Employer
         public ActionResult Index()
         {
-            // TODO Check if user is authorized
-            if (User.IsInRole("Admin"))
-            {
-                // Can change stuff bla bla
-            }
-            return View(_repo.GetAllEducations());
+            return View(_repo.GetAllEmployersEvenPrivate());
         }
 
-        // GET: Education/Details/5
+        // GET: Employer/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Education education = _repo.Search(n => n.EducationId == id).SingleOrDefault();
-            if (education == null)
+            Employer employer = _repo.Search(n => n.EmployerId == id).SingleOrDefault();
+            if (employer == null)
             {
                 return HttpNotFound();
             }
-            return View(education);
+            return View(employer);
         }
 
-        // GET: Education/Create
+        // GET: Employer/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Education/Create
+        // POST: Employer/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EducationId,Name,StartDate,EndDate,SchoolName,Description,Public")] Education education)
+        public ActionResult Create([Bind(Include = "EmployerId,Name,StartDate,EndDate,Public")] Employer employer)
         {
             if (ModelState.IsValid)
             {
-                _repo.CreateEducation(education);
+                _repo.CreateEmployer(employer);
                 _repo.Save();
                 return RedirectToAction("Index");
             }
 
-            return View(education);
+            return View(employer);
         }
 
-        // GET: Education/Edit/5
-        [Authorize(Roles = "Admin, Owner")]
+        // GET: Employer/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Education education = _repo.Search(n => n.EducationId == id).SingleOrDefault();
-            if (education == null)
+            Employer employer = _repo.Search(n => n.EmployerId == id).SingleOrDefault();
+            if (employer == null)
             {
                 return HttpNotFound();
             }
-            return View(education);
+            return View(employer);
         }
 
-        // POST: Education/Edit/5
-        [Authorize(Roles = "Admin, Owner")]
+        // POST: Employer/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EducationId,Name,StartDate,EndDate,SchoolName,Description,Public")] Education education)
+        public ActionResult Edit([Bind(Include = "EmployerId,Name,StartDate,EndDate,Public")] Employer employer)
         {
             if (ModelState.IsValid)
             {
-                _repo.UpdateEducation(education);
+                _repo.UpdateEmployer(employer);
                 _repo.Save();
                 return RedirectToAction("Index");
             }
-            return View(education);
+            return View(employer);
         }
 
-        [Authorize(Roles = "Admin, Owner")]
-        // GET: Education/Delete/5
+        // GET: Employer/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Education education = _repo.Search(n => n.EducationId == id).SingleOrDefault();
-            if (education == null)
+            Employer employer = _repo.Search(n => n.EmployerId == id).SingleOrDefault();
+            if (employer == null)
             {
                 return HttpNotFound();
             }
-            return View(education);
+            return View(employer);
         }
 
-        [Authorize(Roles = "Admin, Owner")]
-        // POST: Education/Delete/5
+        // POST: Employer/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Education education = _repo.Search(n => n.EducationId == id).SingleOrDefault();
-            _repo.DeleteEducation(id);
+            Employer employer = _repo.Search(n => n.EmployerId == id).SingleOrDefault();
+            _repo.DeleteEmployer(id);
             _repo.Save();
             return RedirectToAction("Index");
         }

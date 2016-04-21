@@ -22,14 +22,15 @@ namespace MVCDesignmonster.Logging
                 if (HttpContext.Current.User.Identity.IsAuthenticated)
                     userName = HttpContext.Current.User.Identity.Name;
 
-                //TESTING
-                var test1 = filterContext.HttpContext.Request.Url;
-                var test2 = filterContext.HttpContext.Request.RawUrl; //Denna för komplett url
+                // hårdkodat för att slippa statistik från admin
+                //if (userName == "admin@admin.com")
+                //    return;
 
                 var loggingVM = new LoggingViewModel()
                 {
                     Action = filterContext.ActionDescriptor.ActionName,
                     Controller = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName,
+                    RawUrl = filterContext.HttpContext.Request.RawUrl,
                     UserName = userName,
                     TimeStamp = DateTime.Now
                 };

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using MVCDesignmonster.Logging;
+using MVCDesignmonster.Repository;
 using MVCDesignmonster.Singleton;
 using MVCDesignmonster.WebUI.ViewModels;
 
@@ -35,7 +36,14 @@ namespace MVCDesignmonster.WebUI.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var viewModel = new StartPageViewModel();
+            using (var repo = new StartPageRepository(new RepoDbContext()))
+            {
+                viewModel.WelcomeText = repo.GetStartpage().WelcomeText;
+                viewModel.WelcomeTitle = repo.GetStartpage().WelcomeTitle;
+            }
+
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -63,11 +71,16 @@ namespace MVCDesignmonster.WebUI.Controllers
             // SESSIONSTATS
             //var totalUsers = (int)HttpContext.Application["OnlineUsers"];
 
+            var loggingService = new LogRepository(new RepoDbContext());
+            var statLog = loggingService.GetLast100LogPosts().ToList();
+
             var result = new SessionStatsViewModel()
             {
                 //LoggedInUsers = onlineUsers,
                 TotalSessions = SessionStats.Instance.SessionCount,
                 LoggedInSessions = SessionStats.Instance.LoggedInUsers.Count,
+
+                StatLogs = statLog
             };
 
             ViewBag.Message = "Session stats.";

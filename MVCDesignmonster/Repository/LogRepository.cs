@@ -17,23 +17,14 @@ namespace MVCDesignmonster.Repository
             this._context = context;
         }
 
-
-        public void CreateEducation(Education education)
-        {
-            _context.Educations.Add(education);
-        }
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
         public void Log(LoggingViewModel loggingvm)
         {
             var loggingRow = new StatLog()
             {
                 TimeStamp = loggingvm.TimeStamp,
                 UserName = loggingvm.UserName,
-                Url = loggingvm.Controller + "/" + loggingvm.Action
+                //Url = "/" + loggingvm.Controller + "/" + loggingvm.Action
+                Url = loggingvm.RawUrl
             };
             _context.StatLogs.Add(loggingRow);
             _context.SaveChanges();
@@ -42,7 +33,27 @@ namespace MVCDesignmonster.Repository
         public IEnumerable<StatLog> GetLast100LogPosts()
         {
             // TODO Ändra till 100
-            return _context.StatLogs.Take(5);
+            return _context.StatLogs.OrderByDescending(n => n.TimeStamp).Take(5);
+        }
+
+        private bool disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    _context.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

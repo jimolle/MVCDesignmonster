@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MVCDesignmonster.Models;
 
 namespace MVCDesignmonster.WebUI.ViewModels
 {
@@ -10,5 +11,7 @@ namespace MVCDesignmonster.WebUI.ViewModels
         //public List<string> LoggedInUsers { get; set; }
         public int TotalSessions { get; set; }
         public int LoggedInSessions { get; set; }
+
+        public List<StatLog> StatLogs { get; set; }
     }
 }

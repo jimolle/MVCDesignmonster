@@ -6,11 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using MVCDesignmonster.Logging;
 using MVCDesignmonster.Models;
 using MVCDesignmonster.Repository;
 
 namespace MVCDesignmonster.WebUI.Controllers
 {
+    [LoggingFilter]
     public class ProfileController : Controller
     {
         // With ProfileRepository

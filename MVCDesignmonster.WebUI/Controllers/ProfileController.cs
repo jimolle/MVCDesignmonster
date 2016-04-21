@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Net;
 using System.Web.Mvc;
-using MVCDesignmonster.Logging;
 using MVCDesignmonster.Models;
 using MVCDesignmonster.Repository;
 
@@ -19,7 +12,7 @@ namespace MVCDesignmonster.WebUI.Controllers
 
         public ProfileController()
         {
-            _repo = new ProfileRepository(new RepoDbContext());
+            _repo = new ProfileRepository(new ProfileDbContext());
         }
 
         public ProfileController(IProfileRepository profileRepo)
@@ -32,7 +25,7 @@ namespace MVCDesignmonster.WebUI.Controllers
 
         //public ProfileController()
         //{
-        //    _repo = new SqlRepository<Profile>(new RepoDbContext());
+        //    _repo = new SqlRepository<Profile>(new ProfileDbContext());
         //}
 
         //public ProfileController(IRepository<Profile> profileRepo)

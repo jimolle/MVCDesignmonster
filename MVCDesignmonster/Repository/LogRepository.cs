@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using MVCDesignmonster.Logging;
 using MVCDesignmonster.Models;
@@ -10,9 +8,9 @@ namespace MVCDesignmonster.Repository
 {
     public class LogRepository : ILogRepository
     {
-        private RepoDbContext _context;
+        private ProfileDbContext _context;
 
-        public LogRepository(RepoDbContext context)
+        public LogRepository(ProfileDbContext context)
         {
             this._context = context;
         }

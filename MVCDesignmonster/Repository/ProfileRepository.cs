@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MVCDesignmonster.Models;
 
 namespace MVCDesignmonster.Repository
 {
     public class ProfileRepository : IProfileRepository
     {
-        private RepoDbContext _context;
+        private ProfileDbContext _context;
 
-        public ProfileRepository(RepoDbContext context)
+        public ProfileRepository(ProfileDbContext context)
         {
             this._context = context;
         }

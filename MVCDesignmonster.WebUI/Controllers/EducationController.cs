@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using MVCDesignmonster.Logging;
 using MVCDesignmonster.Models;
 using MVCDesignmonster.Repository;
 
@@ -19,7 +13,7 @@ namespace MVCDesignmonster.WebUI.Controllers
 
         public EducationController()
         {
-            _repo = new EducationRepository(new RepoDbContext());
+            _repo = new EducationRepository(new ProfileDbContext());
         }
 
         public EducationController(IEducationRepository educationRepo)

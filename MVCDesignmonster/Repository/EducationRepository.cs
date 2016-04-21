@@ -9,14 +9,14 @@ namespace MVCDesignmonster.Repository
 {
     public class EducationRepository : IEducationRepository
     {
-        private RepoDbContext _context;
+        private ProfileDbContext _context;
 
         public EducationRepository()
         {
-            _context = new RepoDbContext();
+            _context = new ProfileDbContext();
         }
 
-        public EducationRepository(RepoDbContext context)
+        public EducationRepository(ProfileDbContext context)
         {
             this._context = context;
         }

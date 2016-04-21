@@ -7,12 +7,12 @@ namespace MVCDesignmonster.Repository
 {
     public class StartPageRepository : IStartpageRepository
     {
-        private RepoDbContext _context;
+        private ProfileDbContext _context;
         public StartPageRepository()
         {
-            _context = new RepoDbContext();
+            _context = new ProfileDbContext();
         }
-        public StartPageRepository(RepoDbContext context)
+        public StartPageRepository(ProfileDbContext context)
         {
             this._context = context;
         }

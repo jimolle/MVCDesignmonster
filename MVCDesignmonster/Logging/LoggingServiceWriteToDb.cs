@@ -1,6 +1,5 @@
 using System;
-using System.IO;
-using System.Web;
+using MVCDesignmonster.Models;
 using MVCDesignmonster.Repository;
 
 namespace MVCDesignmonster.Logging
@@ -12,7 +11,7 @@ namespace MVCDesignmonster.Logging
 
         public LoggingServiceWriteToDb()
         {
-            _repo = new LogRepository(new RepoDbContext());
+            _repo = new LogRepository(new ProfileDbContext());
         }
 
         public LoggingServiceWriteToDb(ILogRepository educationRepo)

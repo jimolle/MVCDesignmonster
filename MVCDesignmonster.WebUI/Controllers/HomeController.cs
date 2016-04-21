@@ -1,11 +1,8 @@
-﻿using System.Diagnostics;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
-using System.Net.Mime;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
-using MVCDesignmonster.Logging;
+using MVCDesignmonster.Models;
 using MVCDesignmonster.Repository;
 using MVCDesignmonster.Singleton;
 using MVCDesignmonster.WebUI.ViewModels;
@@ -36,7 +33,7 @@ namespace MVCDesignmonster.WebUI.Controllers
         public ActionResult Index()
         {
             var viewModel = new StartPageViewModel();
-            using (var repo = new StartPageRepository(new RepoDbContext()))
+            using (var repo = new StartPageRepository(new ProfileDbContext()))
             {
                 viewModel.WelcomeText = repo.GetStartpage().WelcomeText;
                 viewModel.WelcomeTitle = repo.GetStartpage().WelcomeTitle;
@@ -59,18 +56,12 @@ namespace MVCDesignmonster.WebUI.Controllers
 
         public ActionResult SessionStatsPage()
         {
-            var singleton1 = SessionStats.Instance;
-            var singleton2 = SessionStats.Instance;
+            //var singleton1 = SessionStats.Instance;
+            //var singleton2 = SessionStats.Instance;
+            //Debug.WriteLine(singleton1.GetHashCode());
+            //Debug.WriteLine(singleton2.GetHashCode());
 
-
-            Debug.WriteLine(singleton1.GetHashCode());
-            Debug.WriteLine(singleton2.GetHashCode());
-
-
-            // SESSIONSTATS
-            //var totalUsers = (int)HttpContext.Application["OnlineUsers"];
-
-            var loggingService = new LogRepository(new RepoDbContext());
+            var loggingService = new LogRepository(new ProfileDbContext());
             var statLog = loggingService.GetLast100LogPosts().ToList();
 
             var result = new SessionStatsViewModel()

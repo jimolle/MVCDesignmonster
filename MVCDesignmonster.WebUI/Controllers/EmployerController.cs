@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using MVCDesignmonster.Logging;
 using MVCDesignmonster.Models;
 using MVCDesignmonster.Repository;
 
@@ -19,7 +13,7 @@ namespace MVCDesignmonster.WebUI.Controllers
 
         public EmployerController()
         {
-            _repo = new EmployerRepository(new RepoDbContext());
+            _repo = new EmployerRepository(new ProfileDbContext());
         }
 
         public EmployerController(IEmployerRepository employerRepo)

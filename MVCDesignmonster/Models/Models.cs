@@ -4,13 +4,18 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MVCDesignmonster.WordCount;
 
 namespace MVCDesignmonster.Models
 {
     public class Startpage
     {
         public int StartpageId { get; set; }
+        [MinWords(5, ErrorMessage = "Minst 5 ord")]
+        [MaxWords(25, ErrorMessage = "Max 25 ord")]
         public string WelcomeTitle { get; set; }
+        [MinWords(100, ErrorMessage = "Minst 100 ord")]
+        [MaxWords(150, ErrorMessage = "Max 150 ord")]
         public string WelcomeText { get; set; }
     }
 

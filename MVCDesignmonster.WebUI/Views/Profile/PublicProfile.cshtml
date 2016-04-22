@@ -12,15 +12,11 @@
     [DEBUG] Showing this presentation for Anonymous?
     @Html.DisplayFor(modelItem => @Model.Profile.ShowProfileForAnonymous)
 </p>
+
 <p>
-    @Html.ActionLink("Edit Profile", "Edit", new { id = @Model.Profile.ProfileId })
+    @Html.DisplayFor(modelItem => @Model.Profile.PublicPresentationText)
 </p>
-
-
-
-    <p>
-        @Html.DisplayFor(modelItem => @Model.Profile.PublicPresentationText)
-    </p>
+@Html.ActionLink("Vänligen logga in för att se utförligare presentation.", "Login", "Account", null, new { @class = "label label-info" })
 
 
     <h2>Utbildningar:</h2>

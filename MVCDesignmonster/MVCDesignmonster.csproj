@@ -111,11 +111,7 @@
     <Compile Include="BusinessObjects\Models\ProfileDbContext.cs" />
     <Compile Include="BusinessObjects\Repository\Generic\SqlRepository.cs" />
     <Compile Include="BusinessObjects\Repository\StartPageRepository.cs" />
-    <Compile Include="BusinessObjects\Repository\WithBaseclass\IDisposedTracker.cs" />
     <Compile Include="BusinessObjects\Repository\Generic\IRepository.cs" />
-    <Compile Include="BusinessObjects\Repository\WithBaseclass\RepoDbContext.cs" />
-    <Compile Include="BusinessObjects\Repository\WithBaseclass\RepositoryBase.cs" />
-    <Compile Include="BusinessObjects\Repository\WithBaseclass\StartpageRepository.cs" />
     <Compile Include="Service\FakeSmsService\FakeSmsService.cs" />
     <Compile Include="Service\SessionStats\ActiveUserService.cs" />
     <Compile Include="Service\WordCount\MaxWordsAttribute.cs" />

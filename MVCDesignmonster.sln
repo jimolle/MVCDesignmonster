@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCDesignmonster.WebUI", "M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCDesignmonster", "MVCDesignmonster\MVCDesignmonster.csproj", "{9883238E-6CAD-443B-AEBE-59729DE0A549}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCDesignmonster.Test", "MVCDesignmonster.Test\MVCDesignmonster.Test.csproj", "{24ADCB0C-5382-49BC-86BA-3BA7724B6ACA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9883238E-6CAD-443B-AEBE-59729DE0A549}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9883238E-6CAD-443B-AEBE-59729DE0A549}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9883238E-6CAD-443B-AEBE-59729DE0A549}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24ADCB0C-5382-49BC-86BA-3BA7724B6ACA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24ADCB0C-5382-49BC-86BA-3BA7724B6ACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24ADCB0C-5382-49BC-86BA-3BA7724B6ACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24ADCB0C-5382-49BC-86BA-3BA7724B6ACA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

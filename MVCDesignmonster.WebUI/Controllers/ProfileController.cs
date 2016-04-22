@@ -1,8 +1,12 @@
-﻿using System.Linq;
+﻿using System;
+using System.IO;
+using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using MVCDesignmonster.Models;
 using MVCDesignmonster.Repository;
+using MVCDesignmonster.Singleton;
 using MVCDesignmonster.WebUI.ViewModels;
 
 namespace MVCDesignmonster.WebUI.Controllers
@@ -103,7 +107,77 @@ namespace MVCDesignmonster.WebUI.Controllers
             return View(profile);
         }
 
-       
+        public ActionResult PicUpload()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Owner")]
+        public ActionResult PicUpload(HttpPostedFileBase file)
+        {
+            if (file != null)
+            {
+                if (file.ContentLength > 2000000)
+                    throw new Exception("för stor fil MAX 2 mb");
+
+                var pic = "";
+                //string pic = System.IO.Path.GetFileName(file.FileName);
+                var fileType = file.ContentType;
+                switch (fileType)
+                {
+                    case "image/jpeg":
+                        pic = "profilBild.jpg";
+                        break;
+                    case "image/png":
+                        pic = "profilBild.png";
+                        break;
+                    default:
+                        throw new Exception("fel filtyp");
+                }
+
+
+                var path = System.IO.Path.Combine(
+                                       Server.MapPath("/Content/img_profile"), pic);
+                // file is uploaded
+                file.SaveAs(path);
+
+                // save the image path path to the database 
+                var profile = _repoProfile.GetProfile();
+                profile.ImagePath = pic;
+                _repoProfile.Save();
+
+
+                // or you can send image directly to database
+                // in-case if you want to store byte[] ie. for DB
+                //using (MemoryStream ms = new MemoryStream())
+                //{
+                //    file.InputStream.CopyTo(ms);
+                //    byte[] array = ms.GetBuffer();
+                //}
+
+            }
+            // after successfully uploading redirect the user
+            return RedirectToAction("Index");
+        }
+
+        [Authorize(Roles = "Admin, Owner")]
+        public ActionResult SessionStatsPage()
+        {
+            using (var loggingService = new LogRepository(new ProfileDbContext()))
+            {
+                var statLog = loggingService.GetLast100LogPosts().ToList();
+                
+                var result = new SessionStatsViewModel()
+                {
+                    SessionStats = SessionStats.Instance.GetSessionStats(),
+                    StatLogs = statLog
+                };
+
+                return View(result);
+            }
+        }
 
         protected override void Dispose(bool disposing)
         {
@@ -112,6 +186,7 @@ namespace MVCDesignmonster.WebUI.Controllers
             _repoEmployer.Dispose();
             base.Dispose(disposing);
         }
+
 
     }
 }

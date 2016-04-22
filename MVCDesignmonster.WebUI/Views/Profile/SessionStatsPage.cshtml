@@ -1,0 +1,39 @@
+﻿@model MVCDesignmonster.WebUI.ViewModels.SessionStatsViewModel
+
+@{
+    ViewBag.Title = "Statistik för sidan";
+}
+<h2>@ViewBag.Title</h2>
+
+<h3 class="alert alert-info">@Model.SessionStats</h3>
+<br/>
+<h3>De 100 senaste loggposterna:</h3>
+<table class="table">
+    <tr>
+        <th>
+            URL
+        </th>
+        <th>
+            Användarnamn
+        </th>
+        <th>
+            Tidpunkt
+        </th>
+    </tr>
+
+    @foreach (var item in Model.StatLogs)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Url)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeStamp)
+            </td>
+        </tr>
+    }
+
+</table>

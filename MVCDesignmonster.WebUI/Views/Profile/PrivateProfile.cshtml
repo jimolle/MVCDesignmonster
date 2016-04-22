@@ -7,6 +7,10 @@
 <h2>Profil för @Model.Profile.Name</h2>
 <p>Email: @Html.DisplayFor(modelItem => @Model.Profile.Email)</p>
 
+@if (Model.Profile.ImagePath != null)
+{
+    <img src="/Content/img_profile/@Model.Profile.ImagePath" alt="Profilbild" />
+}
 
 <p>
     [DEBUG] Showing this presentation for Anonymous?

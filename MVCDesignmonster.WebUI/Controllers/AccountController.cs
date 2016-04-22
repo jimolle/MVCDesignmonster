@@ -78,7 +78,7 @@ namespace MVCDesignmonster.WebUI.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    SessionStats.Instance.LoginSession(User.Identity.GetUserName());
+                    SessionStats.Instance.LoginSession(model.Email);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

@@ -10,15 +10,9 @@ namespace MVCDesignmonster.Singleton
     {
         private static readonly SessionStats _instance = new SessionStats();
 
-
-        //TODO AHHHHH MÅSTE KOLLA MANUELLT SÅ INTE UserName Redan finns i TrackedUsers också! omfg
-        // TODO MÅSTE TYVÄRR SKRIVA OM DET FRÅN GRUNDEN, DET ÄR INTE STABILT ATM.
-        // OBS! Gör det enklare, behöver inte vara superrobust, rensar ju ändå upp vid session end.
         public HashSet<TrackedUser> TrackedUsers { get; private set; } = new HashSet<TrackedUser>();
 
-        static SessionStats()
-        {
-        }
+        static SessionStats() { }
 
         private SessionStats() { }
 
@@ -32,32 +26,39 @@ namespace MVCDesignmonster.Singleton
 
         public void AddOneSession()
         {
-            var username = HttpContext.Current.User.Identity.GetUserName();
-            if (username == "")
-                username = "Anonymous";
-
-            var trackedUser = new TrackedUser()
+            try
             {
-                SessionId = HttpContext.Current.Session.SessionID,
-                UserName = username
-            };
+                var username = HttpContext.Current.User.Identity.GetUserName();
 
-            foreach (var user in TrackedUsers)
+                var trackedUser = new TrackedUser()
+                {
+                    SessionId = HttpContext.Current.Session.SessionID,
+                    UserName = username
+                };
+
+                //foreach (var user in TrackedUsers)
+                //{
+                //    if (user.SessionId == trackedUser.SessionId)
+                //        return;
+                //}
+
+                TrackedUsers.Add(trackedUser);
+            }
+            catch (Exception)
             {
-                if (user.SessionId == trackedUser.SessionId)
-                    return;
+                throw;
+                // Should log, not just throw!
             }
 
-            TrackedUsers.Add(trackedUser);
         }
 
         public void RemoveOneSession(string sessionId)
         {
             try
             {
-                var trackedUser = TrackedUsers.SingleOrDefault(n => n.SessionId == sessionId);
-                if (trackedUser == null)
-                    return;
+                var trackedUser = TrackedUsers.FirstOrDefault(n => n.SessionId == sessionId);
+                //if (trackedUser == null)
+                //    return;
 
                 TrackedUsers.Remove(trackedUser);
 
@@ -75,7 +76,7 @@ namespace MVCDesignmonster.Singleton
             {
                 var sessionId = System.Web.HttpContext.Current.Session.SessionID;
 
-                var trackedUser = TrackedUsers.SingleOrDefault(n => n.SessionId == sessionId);
+                var trackedUser = TrackedUsers.FirstOrDefault(n => n.SessionId == sessionId);
                 if (trackedUser == null)
                     return;
 
@@ -92,13 +93,13 @@ namespace MVCDesignmonster.Singleton
         {
             try
             {
-                var sessionId = System.Web.HttpContext.Current.Session.SessionID;
+                var sessionId = HttpContext.Current.Session.SessionID;
 
-                var trackedUser = TrackedUsers.SingleOrDefault(n => n.SessionId == sessionId);
+                var trackedUser = TrackedUsers.FirstOrDefault(n => n.SessionId == sessionId);
                 if (trackedUser == null)
                     return;
 
-                trackedUser.UserName = "Anonymous";
+                trackedUser.UserName = "";
             }
             catch (Exception)
             {
@@ -110,8 +111,17 @@ namespace MVCDesignmonster.Singleton
         public string GetSessionStats()
         {
             var sessions = TrackedUsers.Count;
-            var loggedinSessions = TrackedUsers.Count(n => n.UserName != "Anonymous");
-            return $"{sessions} aktiva sessioner varav {loggedinSessions} påloggade.";
+            var loggedinSessions = TrackedUsers.Count(n => n.UserName != "");
+
+            var sessionText = "aktiv session";
+            var loggedonText = "påloggad";
+            if (sessions > 1)
+                sessionText = "aktiva sessioner";
+            if (loggedinSessions > 1)
+                loggedonText = "påloggade";
+
+
+            return $"{sessions} {sessionText} varav {loggedinSessions} {loggedonText}.";
         }
 
     }

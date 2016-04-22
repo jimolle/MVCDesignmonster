@@ -1,0 +1,28 @@
+﻿@model IEnumerable<MVCDesignmonster.Singleton.TrackedUser>
+@{
+    ViewBag.Title = "Debug";
+}
+
+<h2>Debug</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Username
+        </th>
+    </tr>
+    @foreach (var session in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => session.SessionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => session.UserName)
+            </td>
+        </tr>
+    }
+</table>

@@ -36,6 +36,7 @@ namespace MVCDesignmonster.Models
         [MaxWords(1000, ErrorMessage = "Max 1000 ord")]
         public string PrivatePresentationText { get; set; }
 
+        public string ImagePath { get; set; }
         // TODO Nån form av bild alt. bilder!?
     }
 

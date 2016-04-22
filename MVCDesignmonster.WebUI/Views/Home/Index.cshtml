@@ -38,7 +38,7 @@
             <li class="alert alert-danger">Verkar som om databaskopplingen inte alltid stängs ordentligt, blir ibland problem om man gör en ny build utan att manuellt stänga databaskopplingen i VS...</li>
             <li class="alert alert-danger">Med nuvarande repos så öppnar den en separat DbContext för varje repo jag instansierar! Här hade det ju varit något med UoW-pattern...</li>
             <li class="alert alert-danger">Man hade kunnat sätta upp modellerna med relationer till varandra, hade nog underlättat, men provade utan för att se fördelar/nackdelar med det.</li>
-            <li class="alert alert-success">DB-initalization seems to be OK.</li>
+            <li class="alert alert-danger">Ibland blir filloggern överhettad och kastar exception (används av en annan process, kanske dispose problem?).</li>
             <li class="alert alert-success">SessionStats Seems to be OK. OBS! Timout session & cookie = 1 ATM.</li>
             <li class="alert alert-success">Two-Factor FakeSmsService skriver till Debug Output.</li>
         </ul>

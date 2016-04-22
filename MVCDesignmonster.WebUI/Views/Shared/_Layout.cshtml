@@ -23,6 +23,7 @@
                 @*@Html.Action("RenderMenu", "Home")*@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Profil", "Index", "Profile")</li>
+                    <li>@Html.ActionLink("Debug", "Debug", "Home")</li>
                     @Html.Partial("_MenuPartial")
                 </ul>
                 @Html.Partial("_LoginPartial")

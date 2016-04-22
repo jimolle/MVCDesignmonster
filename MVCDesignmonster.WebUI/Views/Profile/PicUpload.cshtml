@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Ladda upp en bild till profilen.";
+}
+
+<h2>@ViewBag.Title</h2>
+            <hr/>
+
+
+    @using (Html.BeginForm("PicUpload", "Profile", FormMethod.Post,
+        new {enctype = "multipart/form-data"}))
+
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            <div class="form-group">
+                <label for="file" class="control-label col-md-2">Välj profilbild:</label>
+                <div class="col-md-10">
+                    <input type="file" name="file" id="file" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Ladda upp bild!" class="btn btn-default"/>
+                </div>
+            </div>
+
+        </div>
+    }

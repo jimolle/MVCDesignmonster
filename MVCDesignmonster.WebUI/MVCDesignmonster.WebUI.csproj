@@ -262,6 +262,7 @@
     <Content Include="Views\Employer\Index.cshtml" />
     <Content Include="Views\Profile\PrivateProfile.cshtml" />
     <Content Include="Views\Home\Debug.cshtml" />
+    <Content Include="Views\Profile\_ProfilePic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

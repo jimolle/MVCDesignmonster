@@ -36,11 +36,11 @@ namespace MVCDesignmonster.Service.SessionStats
                     UserName = username
                 };
 
-                //foreach (var user in TrackedUsers)
-                //{
-                //    if (user.SessionId == trackedUser.SessionId)
-                //        return;
-                //}
+                foreach (var user in TrackedUsers)
+                {
+                    if (user.SessionId == trackedUser.SessionId)
+                        return;
+                }
 
                 TrackedUsers.Add(trackedUser);
             }

@@ -4,103 +4,102 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Profil för @Model.Profile.Name</h2>
-<p>Email: @Html.DisplayFor(modelItem => @Model.Profile.Email)</p>
-
-@if (Model.Profile.ImagePath != null)
-{
-    <img src="/Content/img_profile/@Model.Profile.ImagePath" alt="Profilbild" />
-}
-
-<p>
-    [DEBUG] Showing this presentation for Anonymous?
-    @Html.DisplayFor(modelItem => @Model.Profile.ShowProfileForAnonymous)
-</p>
-
-    <p>
-        @Html.DisplayFor(modelItem => @Model.Profile.PrivatePresentationText)
-    </p>
+        <div class="clearfix content-heading">
+            @Html.Partial("_ProfilePic")
+            <h2>Profil för @Model.Profile.Name</h2>
+            <p>Email: @Html.DisplayFor(modelItem => @Model.Profile.Email)</p>
+            <p class="largeFont">@Html.DisplayFor(modelItem => @Model.Profile.PrivatePresentationText)</p>
 
 
-    <h2>Utbildningar:</h2>
-    <table class="table">
+            <p>
+                [DEBUG] Showing this presentation for Anonymous?
+                @Html.DisplayFor(modelItem => @Model.Profile.ShowProfileForAnonymous)
+            </p>
+
+
+        </div>
+
+
+
+<h2>Utbildningar:</h2>
+<table class="table">
+    <tr>
+        <th>
+            Namn
+        </th>
+        <th>
+            Påbörjades
+        </th>
+        <th>
+            Avslutades
+        </th>
+        <th>
+            Namn på skola
+        </th>
+        <th>
+            Beskrivning
+        </th>
+        <th>
+            Publik?
+        </th>
+    </tr>
+    @foreach (var education in Model.Educations)
+    {
         <tr>
-            <th>
-                Namn
-            </th>
-            <th>
-                Påbörjades
-            </th>
-            <th>
-                Avslutades
-            </th>
-            <th>
-                Namn på skola
-            </th>
-            <th>
-                Beskrivning
-            </th>
-            <th>
-                Publik?
-            </th>
+            <td>
+                @Html.DisplayFor(modelItem => education.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => education.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => education.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => education.SchoolName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => education.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => education.Public)
+            </td>
         </tr>
-        @foreach (var education in Model.Educations)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => education.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => education.StartDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => education.EndDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => education.SchoolName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => education.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => education.Public)
-                </td>
-            </tr>
-        }
-    </table>
+    }
+</table>
 
 
-    <h2>Arbetsgivare:</h2>
-    <table class="table">
+<h2>Arbetsgivare:</h2>
+<table class="table">
+    <tr>
+        <th>
+            Namn
+        </th>
+        <th>
+            Påbörjades
+        </th>
+        <th>
+            Avslutades
+        </th>
+        <th>
+            Publik?
+        </th>
+    </tr>
+    @foreach (var employer in Model.Employers)
+    {
         <tr>
-            <th>
-                Namn
-            </th>
-            <th>
-                Påbörjades
-            </th>
-            <th>
-                Avslutades
-            </th>
-            <th>
-                Publik?
-            </th>
+            <td>
+                @Html.DisplayFor(modelItem => employer.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => employer.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => employer.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => employer.Public)
+            </td>
         </tr>
-        @foreach (var employer in Model.Employers)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => employer.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => employer.StartDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => employer.EndDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => employer.Public)
-                </td>
-            </tr>
-        }
-    </table>
+    }
+</table>

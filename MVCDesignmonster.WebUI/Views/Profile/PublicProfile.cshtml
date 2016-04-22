@@ -4,23 +4,21 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Profil för @Model.Profile.Name</h2>
-<p>Email: @Html.DisplayFor(modelItem => @Model.Profile.Email)</p>
+<div class="clearfix content-heading">
+    @Html.Partial("_ProfilePic")
+    <h2>Profil för @Model.Profile.Name</h2>
+    <p>Email: @Html.DisplayFor(modelItem => @Model.Profile.Email)</p>
+    <p class="largeFont">@Html.DisplayFor(modelItem => @Model.Profile.PrivatePresentationText)</p>
 
-@if (Model.Profile.ImagePath != null)
-{
-    <img src="/Content/img_profile/@Model.Profile.ImagePath" alt="Profilbild"/>
-}
 
-<p>
-    [DEBUG] Showing this presentation for Anonymous?
-    @Html.DisplayFor(modelItem => @Model.Profile.ShowProfileForAnonymous)
-</p>
+    <p>
+        [DEBUG] Showing this presentation for Anonymous?
+        @Html.DisplayFor(modelItem => @Model.Profile.ShowProfileForAnonymous)
+    </p>
 
-<p>
-    @Html.DisplayFor(modelItem => @Model.Profile.PublicPresentationText)
-</p>
-@Html.ActionLink("Vänligen logga in för att se utförligare presentation.", "Login", "Account", null, new { @class = "label label-info" })
+
+</div>
+@Html.ActionLink("Vänligen logga in för att se en utförligare presentation.", "Login", "Account", null, new { @class = "label label-info" })
 
 
     <h2>Utbildningar:</h2>

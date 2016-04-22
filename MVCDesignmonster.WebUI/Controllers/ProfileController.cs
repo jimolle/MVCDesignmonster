@@ -4,9 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using MVCDesignmonster.Models;
-using MVCDesignmonster.Repository;
-using MVCDesignmonster.Singleton;
+using MVCDesignmonster.BusinessObjects.Models;
+using MVCDesignmonster.BusinessObjects.Repository;
+using MVCDesignmonster.Service.SessionStats;
 using MVCDesignmonster.WebUI.ViewModels;
 
 namespace MVCDesignmonster.WebUI.Controllers
@@ -171,7 +171,7 @@ namespace MVCDesignmonster.WebUI.Controllers
                 
                 var result = new SessionStatsViewModel()
                 {
-                    SessionStats = SessionStats.Instance.GetSessionStats(),
+                    SessionStats = ActiveUserService.Instance.GetSessionStats(),
                     StatLogs = statLog
                 };
 

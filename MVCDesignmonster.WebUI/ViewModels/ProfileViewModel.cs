@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using MVCDesignmonster.Models;
+﻿using System.Collections.Generic;
+using MVCDesignmonster.BusinessObjects.Models;
 
 namespace MVCDesignmonster.WebUI.ViewModels
 {

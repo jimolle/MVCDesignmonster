@@ -86,41 +86,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logging\ILoggingService.cs" />
-    <Compile Include="Logging\LoggingFilterAttribute.cs" />
-    <Compile Include="Logging\LoggingServiceWriteToDb.cs" />
-    <Compile Include="Logging\LoggingViewModel.cs" />
-    <Compile Include="Models\Models.cs" />
+    <Compile Include="BusinessObjects\Models\Education.cs" />
+    <Compile Include="BusinessObjects\Models\Employer.cs" />
+    <Compile Include="BusinessObjects\Models\Profile.cs" />
+    <Compile Include="BusinessObjects\Models\StatLog.cs" />
+    <Compile Include="Service\Logging\ILoggingService.cs" />
+    <Compile Include="Service\Logging\LoggingFilterAttribute.cs" />
+    <Compile Include="Service\Logging\LoggingServiceWriteToDb.cs" />
+    <Compile Include="Service\Logging\LoggingViewModel.cs" />
+    <Compile Include="BusinessObjects\Models\Startpage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Logging\LoggingServiceWriteToFile.cs" />
-    <Compile Include="Models\ApplicationDbContext.cs" />
-    <Compile Include="Models\ApplicationUser.cs" />
-    <Compile Include="Repository\EducationRepository.cs" />
-    <Compile Include="Repository\EmployerRepository.cs" />
-    <Compile Include="Repository\IEducationRepository.cs" />
-    <Compile Include="Repository\IEmployerRepository.cs" />
-    <Compile Include="Repository\IProfileRepository.cs" />
-    <Compile Include="Repository\ILogRepository.cs" />
-    <Compile Include="Repository\IStartpageRepository.cs" />
-    <Compile Include="Repository\LogRepository.cs" />
-    <Compile Include="Repository\ProfileRepository.cs" />
-    <Compile Include="Models\ProfileDbContext.cs" />
-    <Compile Include="Repository\Generic\SqlRepository.cs" />
-    <Compile Include="Repository\StartPageRepository.cs" />
-    <Compile Include="Repository\WithBaseclass\IDisposedTracker.cs" />
-    <Compile Include="Repository\Generic\IRepository.cs" />
-    <Compile Include="Repository\WithBaseclass\RepoDbContext.cs" />
-    <Compile Include="Repository\WithBaseclass\RepositoryBase.cs" />
-    <Compile Include="Repository\WithBaseclass\StartpageRepository.cs" />
-    <Compile Include="Service\FakeSmsService.cs" />
-    <Compile Include="SessionStats\SessionStats.cs" />
-    <Compile Include="WordCount\MaxWordsAttribute.cs" />
-    <Compile Include="WordCount\MinWordsAttribute.cs" />
+    <Compile Include="Service\Logging\LoggingServiceWriteToFile.cs" />
+    <Compile Include="BusinessObjects\Models\ApplicationDbContext.cs" />
+    <Compile Include="BusinessObjects\Models\ApplicationUser.cs" />
+    <Compile Include="BusinessObjects\Repository\EducationRepository.cs" />
+    <Compile Include="BusinessObjects\Repository\EmployerRepository.cs" />
+    <Compile Include="BusinessObjects\Repository\IEducationRepository.cs" />
+    <Compile Include="BusinessObjects\Repository\IEmployerRepository.cs" />
+    <Compile Include="BusinessObjects\Repository\IProfileRepository.cs" />
+    <Compile Include="BusinessObjects\Repository\ILogRepository.cs" />
+    <Compile Include="BusinessObjects\Repository\IStartpageRepository.cs" />
+    <Compile Include="BusinessObjects\Repository\LogRepository.cs" />
+    <Compile Include="BusinessObjects\Repository\ProfileRepository.cs" />
+    <Compile Include="BusinessObjects\Models\ProfileDbContext.cs" />
+    <Compile Include="BusinessObjects\Repository\Generic\SqlRepository.cs" />
+    <Compile Include="BusinessObjects\Repository\StartPageRepository.cs" />
+    <Compile Include="BusinessObjects\Repository\WithBaseclass\IDisposedTracker.cs" />
+    <Compile Include="BusinessObjects\Repository\Generic\IRepository.cs" />
+    <Compile Include="BusinessObjects\Repository\WithBaseclass\RepoDbContext.cs" />
+    <Compile Include="BusinessObjects\Repository\WithBaseclass\RepositoryBase.cs" />
+    <Compile Include="BusinessObjects\Repository\WithBaseclass\StartpageRepository.cs" />
+    <Compile Include="Service\FakeSmsService\FakeSmsService.cs" />
+    <Compile Include="Service\SessionStats\ActiveUserService.cs" />
+    <Compile Include="Service\WordCount\MaxWordsAttribute.cs" />
+    <Compile Include="Service\WordCount\MinWordsAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

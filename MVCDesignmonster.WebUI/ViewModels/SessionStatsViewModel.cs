@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using MVCDesignmonster.Models;
+using MVCDesignmonster.BusinessObjects.Models;
 
 namespace MVCDesignmonster.WebUI.ViewModels
 {

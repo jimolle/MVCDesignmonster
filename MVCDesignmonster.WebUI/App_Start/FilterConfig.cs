@@ -1,5 +1,5 @@
-﻿using MVCDesignmonster.Logging;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using MVCDesignmonster.Service.Logging;
 
 namespace MVCDesignmonster.WebUI
 {

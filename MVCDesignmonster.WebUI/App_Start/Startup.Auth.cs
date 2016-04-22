@@ -3,7 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using MVCDesignmonster.Models;
+using MVCDesignmonster.BusinessObjects.Models;
 using Owin;
 
 namespace MVCDesignmonster.WebUI
@@ -34,7 +34,7 @@ namespace MVCDesignmonster.WebUI
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 },
 
-                // TODO Mek för att få SessionStats att stämma
+                // TODO Mek för att få ActiveUserService att stämma
                 SlidingExpiration = true,
                 ExpireTimeSpan = TimeSpan.FromMinutes(1)
             });            

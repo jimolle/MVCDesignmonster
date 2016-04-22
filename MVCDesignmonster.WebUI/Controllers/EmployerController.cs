@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using MVCDesignmonster.Models;
-using MVCDesignmonster.Repository;
+using MVCDesignmonster.BusinessObjects.Models;
+using MVCDesignmonster.BusinessObjects.Repository;
 
 namespace MVCDesignmonster.WebUI.Controllers
 {
@@ -26,21 +26,6 @@ namespace MVCDesignmonster.WebUI.Controllers
         public ActionResult Index()
         {
             return View(_repo.GetAllEmployersEvenPrivate());
-        }
-
-        // GET: Employer/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Employer employer = _repo.Search(n => n.EmployerId == id).SingleOrDefault();
-            if (employer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(employer);
         }
 
         // GET: Employer/Create

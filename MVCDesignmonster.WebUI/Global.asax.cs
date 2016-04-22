@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.SessionState;
-using MVCDesignmonster.Singleton;
+using MVCDesignmonster.Service.SessionStats;
 
 namespace MVCDesignmonster.WebUI
 {
@@ -19,19 +19,19 @@ namespace MVCDesignmonster.WebUI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            //SessionStatsSingleTon = SessionStats.Instance;
+            //SessionStatsSingleTon = ActiveUserService.Instance;
         }
 
         void Session_Start(object sender, EventArgs e)
         {
-            SessionStats.Instance.AddOneSession();
+            ActiveUserService.Instance.AddOneSession();
         }
         void Session_End(object sender, EventArgs e)
         {
             // Kommer åt sessionId efter det stängts
             var sessionId = this.Session.SessionID;
 
-            SessionStats.Instance.RemoveOneSession(sessionId);
+            ActiveUserService.Instance.RemoveOneSession(sessionId);
         }
 
         // OLD VERSION 2

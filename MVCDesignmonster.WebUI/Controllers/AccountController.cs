@@ -5,9 +5,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using MVCDesignmonster.Models;
-using MVCDesignmonster.Singleton;
-using MVCDesignmonster.WebUI.Models;
+using MVCDesignmonster.BusinessObjects.Models;
+using MVCDesignmonster.Service.SessionStats;
+using MVCDesignmonster.WebUI.IdentityViewModels;
 
 namespace MVCDesignmonster.WebUI.Controllers
 {
@@ -78,7 +78,7 @@ namespace MVCDesignmonster.WebUI.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    SessionStats.Instance.LoginSession(model.Email);
+                    ActiveUserService.Instance.LoginSession(model.Email);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -391,7 +391,7 @@ namespace MVCDesignmonster.WebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            SessionStats.Instance.LogoutSession(User.Identity.GetUserName());
+            ActiveUserService.Instance.LogoutSession(User.Identity.GetUserName());
 
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");

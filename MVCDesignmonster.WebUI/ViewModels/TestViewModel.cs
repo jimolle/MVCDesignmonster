@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using MVCDesignmonster.WordCount;
+using MVCDesignmonster.Service.WordCount;
 
 namespace MVCDesignmonster.WebUI.ViewModels
 {

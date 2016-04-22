@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using MVCDesignmonster.Models;
-using MVCDesignmonster.Repository;
-using MVCDesignmonster.Singleton;
+using MVCDesignmonster.BusinessObjects.Models;
+using MVCDesignmonster.BusinessObjects.Repository;
+using MVCDesignmonster.Service.SessionStats;
 using MVCDesignmonster.WebUI.ViewModels;
 
 namespace MVCDesignmonster.WebUI.Controllers
@@ -29,7 +29,7 @@ namespace MVCDesignmonster.WebUI.Controllers
 
         public ActionResult Debug()
         {
-            return View(SessionStats.Instance.TrackedUsers);
+            return View(ActiveUserService.Instance.TrackedUsers);
         }
 
         // NOT USED

@@ -6,8 +6,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using MVCDesignmonster.Models;
-using MVCDesignmonster.Service;
+using MVCDesignmonster.BusinessObjects.Models;
+using MVCDesignmonster.Service.FakeSmsService;
 
 
 namespace MVCDesignmonster.WebUI

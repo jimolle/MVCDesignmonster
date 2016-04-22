@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using MVCDesignmonster.Models;
-using MVCDesignmonster.Repository;
+using MVCDesignmonster.BusinessObjects.Models;
+using MVCDesignmonster.BusinessObjects.Repository;
 
 namespace MVCDesignmonster.WebUI.Controllers
 {
@@ -33,20 +33,6 @@ namespace MVCDesignmonster.WebUI.Controllers
             return View(_repo.GetAllEducationsEvenPrivate());
         }
 
-        // GET: Education/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Education education = _repo.Search(n => n.EducationId == id).SingleOrDefault();
-            if (education == null)
-            {
-                return HttpNotFound();
-            }
-            return View(education);
-        }
 
         // GET: Education/Create
         public ActionResult Create()

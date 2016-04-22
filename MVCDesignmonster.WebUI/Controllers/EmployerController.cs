@@ -6,6 +6,7 @@ using MVCDesignmonster.Repository;
 
 namespace MVCDesignmonster.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin, Owner")]
     public class EmployerController : Controller
     {
         // With EmployerRepo

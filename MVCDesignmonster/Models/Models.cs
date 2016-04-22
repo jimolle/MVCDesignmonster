@@ -9,7 +9,6 @@ namespace MVCDesignmonster.Models
 {
     public class Startpage
     {
-        //public int ID { get; set; }
         public int StartpageId { get; set; }
         public string WelcomeTitle { get; set; }
         public string WelcomeText { get; set; }
@@ -25,7 +24,7 @@ namespace MVCDesignmonster.Models
         public string Email { get; set; }
 
         public string PublicPresentationText { get; set; }
-        public bool ShowPrivatePresentationText { get; set; }
+        public bool ShowProfileForAnonymous { get; set; }
         public string PrivatePresentationText { get; set; }
 
         // TODO Nån form av bild alt. bilder!?

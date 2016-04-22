@@ -1,0 +1,104 @@
+﻿@model MVCDesignmonster.WebUI.ViewModels.ProfileViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Profil för @Model.Profile.Name</h2>
+<p>Email: @Html.DisplayFor(modelItem => @Model.Profile.Email)</p>
+
+
+<p>
+    [DEBUG] Showing this presentation for Anonymous?
+    @Html.DisplayFor(modelItem => @Model.Profile.ShowProfileForAnonymous)
+</p>
+
+
+
+    <p>
+        @Html.DisplayFor(modelItem => @Model.Profile.PrivatePresentationText)
+    </p>
+
+
+    <h2>Utbildningar:</h2>
+    <table class="table">
+        <tr>
+            <th>
+                Namn
+            </th>
+            <th>
+                Påbörjades
+            </th>
+            <th>
+                Avslutades
+            </th>
+            <th>
+                Namn på skola
+            </th>
+            <th>
+                Beskrivning
+            </th>
+            <th>
+                Publik?
+            </th>
+        </tr>
+        @foreach (var education in Model.Educations)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => education.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => education.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => education.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => education.SchoolName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => education.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => education.Public)
+                </td>
+            </tr>
+        }
+    </table>
+
+
+    <h2>Arbetsgivare:</h2>
+    <table class="table">
+        <tr>
+            <th>
+                Namn
+            </th>
+            <th>
+                Påbörjades
+            </th>
+            <th>
+                Avslutades
+            </th>
+            <th>
+                Publik?
+            </th>
+        </tr>
+        @foreach (var employer in Model.Employers)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => employer.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => employer.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => employer.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => employer.Public)
+                </td>
+            </tr>
+        }
+    </table>

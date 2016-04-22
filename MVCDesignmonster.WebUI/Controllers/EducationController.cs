@@ -6,6 +6,7 @@ using MVCDesignmonster.Repository;
 
 namespace MVCDesignmonster.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin, Owner")]
     public class EducationController : Controller
     {
         // With EducationRepository
@@ -29,7 +30,7 @@ namespace MVCDesignmonster.WebUI.Controllers
             {
                 // Can change stuff bla bla
             }
-            return View(_repo.GetAllEducations());
+            return View(_repo.GetAllEducationsEvenPrivate());
         }
 
         // GET: Education/Details/5
@@ -71,7 +72,6 @@ namespace MVCDesignmonster.WebUI.Controllers
         }
 
         // GET: Education/Edit/5
-        [Authorize(Roles = "Admin, Owner")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -87,7 +87,6 @@ namespace MVCDesignmonster.WebUI.Controllers
         }
 
         // POST: Education/Edit/5
-        [Authorize(Roles = "Admin, Owner")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "EducationId,Name,StartDate,EndDate,SchoolName,Description,Public")] Education education)
@@ -101,7 +100,6 @@ namespace MVCDesignmonster.WebUI.Controllers
             return View(education);
         }
 
-        [Authorize(Roles = "Admin, Owner")]
         // GET: Education/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -117,7 +115,6 @@ namespace MVCDesignmonster.WebUI.Controllers
             return View(education);
         }
 
-        [Authorize(Roles = "Admin, Owner")]
         // POST: Education/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

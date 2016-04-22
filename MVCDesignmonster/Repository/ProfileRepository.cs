@@ -16,7 +16,7 @@ namespace MVCDesignmonster.Repository
 
         public Profile GetProfile()
         {
-            return _context.Profile.SingleOrDefault();
+            return _context.Profile.FirstOrDefault();
         }
 
         public void UpdateProfile(Profile profile)

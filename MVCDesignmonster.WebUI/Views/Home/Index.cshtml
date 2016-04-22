@@ -7,6 +7,8 @@
 <div class="jumbotron">
     <h1>@Model.WelcomeTitle</h1>
     <p class="lead">@Model.WelcomeText</p>
+
+    <p>@Html.ActionLink("Se min profil!", "Index", "Profile", null, new { @class = "btn btn-success btn-lg" })</p>
 </div>
 
 <div class="row">
@@ -33,8 +35,11 @@
     <div class="col-md-6">
         <h2>BUGS</h2>
         <ul>
+            <li class="alert alert-danger">Verkar som om databaskopplingen inte alltid stängs ordentligt, blir ibland problem om man gör en ny build utan att manuellt stänga databaskopplingen i VS...</li>
+            <li class="alert alert-danger">Med nuvarande repos så öppnar den en separat DbContext för varje repo jag instansierar! Här hade det ju varit något med UoW-pattern...</li>
+            <li class="alert alert-danger">Man hade kunnat sätta upp modellerna med relationer till varandra, hade nog underlättat, men provade utan för att se fördelar/nackdelar med det.</li>
             <li class="alert alert-success">DB-initalization seems to be OK.</li>
-            <li class="alert alert-danger">SessionStats kan bli negativ i antalet inloggade users om man loggar ut från att ha varit cookie-authad.</li>
+            <li class="alert alert-success">SessionStats Seems to be OK. OBS! Timout session & cookie = 1 ATM.</li>
             <li class="alert alert-success">Two-Factor FakeSmsService skriver till Debug Output.</li>
         </ul>
     </div>

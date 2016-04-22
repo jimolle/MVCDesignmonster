@@ -37,7 +37,7 @@ namespace MVCDesignmonster.Repository
             return Search(n => n.Public == true).ToList();
         }
 
-        public IEnumerable<Education> GetAllEducations()
+        public IEnumerable<Education> GetAllEducationsEvenPrivate()
         {
             return _context.Educations.ToList();
         }

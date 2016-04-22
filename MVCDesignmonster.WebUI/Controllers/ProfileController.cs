@@ -1,55 +1,84 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using MVCDesignmonster.Models;
 using MVCDesignmonster.Repository;
+using MVCDesignmonster.WebUI.ViewModels;
 
 namespace MVCDesignmonster.WebUI.Controllers
 {
+    [Route("Profil/{action}")]
     public class ProfileController : Controller
     {
         // With ProfileRepository
-        private IProfileRepository _repo;
+        private IProfileRepository _repoProfile;
+        private IEducationRepository _repoEducation;
+        private IEmployerRepository _repoEmployer;
 
         public ProfileController()
         {
-            _repo = new ProfileRepository(new ProfileDbContext());
+            _repoProfile = new ProfileRepository(new ProfileDbContext());
+            _repoEducation = new EducationRepository(new ProfileDbContext());
+            _repoEmployer = new EmployerRepository(new ProfileDbContext());
+
         }
 
-        public ProfileController(IProfileRepository profileRepo)
+        public ProfileController(IProfileRepository profileRepo, IEducationRepository educationRepo, IEmployerRepository employerRepo)
         {
-            _repo = profileRepo;
+            _repoProfile = profileRepo;
+            _repoEducation = educationRepo;
+            _repoEmployer = employerRepo;
         }
 
-        //With generic repo
-        //private IRepository<Profile> _repo;
-
-        //public ProfileController()
-        //{
-        //    _repo = new SqlRepository<Profile>(new ProfileDbContext());
-        //}
-
-        //public ProfileController(IRepository<Profile> profileRepo)
-        //{
-        //    _repo = profileRepo;
-        //}
 
         // GET: Profile
+        [Route("Profil")]
         public ActionResult Index()
         {
-            var test = _repo.GetProfile();
-            return View(test);
+            if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                return RedirectToAction("PrivateProfile");
+            else
+                return RedirectToAction("PublicProfile");
         }
 
-        //    #region TODO
-        // GET: Profile/Details/5
-        public ActionResult Details(int? id)
+        // GET: Profile/PublicProfile
+        public ActionResult PublicProfile()
         {
-            if (id == null)
+            if (_repoProfile.GetProfile().ShowProfileForAnonymous == false)
+                return RedirectToAction("Login", "Account");
+
+            // Getting public profile
+            var viewModel = new ProfileViewModel()
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            //Profile profile = _repo.Search(n => n.ProfileId == id).SingleOrDefault();
-            Profile profile = _repo.GetProfile();
+                Profile = _repoProfile.GetProfile(),
+                Educations = _repoEducation.GetPublicEducations().Where(n => n.Public),
+                Employers = _repoEmployer.GetPublicEmployers().Where(n => n.Public)
+            };
+
+            return View(viewModel);
+        }
+
+        // GET: Profile/PrivateProfile
+        [Authorize]
+        public ActionResult PrivateProfile()
+        {
+            // Getting full profile
+            var viewModel = new ProfileViewModel()
+            {
+                Profile = _repoProfile.GetProfile(),
+                Educations = _repoEducation.GetAllEducationsEvenPrivate(),
+                Employers = _repoEmployer.GetAllEmployersEvenPrivate()
+            };
+
+            return View(viewModel);
+        }
+
+       
+        // GET: Profile/Edit/5
+        [Authorize(Roles = "Admin, Owner")]
+        public ActionResult Edit()
+        {
+            Profile profile = _repoProfile.GetProfile();
             if (profile == null)
             {
                 return HttpNotFound();
@@ -57,91 +86,32 @@ namespace MVCDesignmonster.WebUI.Controllers
             return View(profile);
         }
 
-        //    // GET: Profile/Create
-        //    public ActionResult Create()
-        //    {
-        //        return View();
-        //    }
+        // POST: Profile/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Owner")]
+        public ActionResult Edit([Bind(Include = "ProfileId, Name,Email,PublicPresentationText,ShowProfileForAnonymous,PrivatePresentationText")] Profile profile)
+        {
+            if (ModelState.IsValid)
+            {
+                _repoProfile.UpdateProfile(profile);
+                _repoProfile.Save();
+                return RedirectToAction("Index");
+            }
+            return View(profile);
+        }
 
-        //    // POST: Profile/Create
-        //    // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //    // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //    [HttpPost]
-        //    [ValidateAntiForgeryToken]
-        //    public ActionResult Create([Bind(Include = "ProfileId,Name,Email,PublicPresentationText,ShowPrivatePresentationText,PrivatePresentationText")] Profile profile)
-        //    {
-        //        if (ModelState.IsValid)
-        //        {
-        //            _repo.Profile.Add(profile);
-        //            _repo.SaveChanges();
-        //            return RedirectToAction("Index");
-        //        }
-
-        //        return View(profile);
-        //    }
-
-        //    // GET: Profile/Edit/5
-        //    public ActionResult Edit(int? id)
-        //    {
-        //        if (id == null)
-        //        {
-        //            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //        }
-        //        Profile profile = _repo.Profile.Find(id);
-        //        if (profile == null)
-        //        {
-        //            return HttpNotFound();
-        //        }
-        //        return View(profile);
-        //    }
-
-        //    // POST: Profile/Edit/5
-        //    // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //    // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //    [HttpPost]
-        //    [ValidateAntiForgeryToken]
-        //    public ActionResult Edit([Bind(Include = "ProfileId,Name,Email,PublicPresentationText,ShowPrivatePresentationText,PrivatePresentationText")] Profile profile)
-        //    {
-        //        if (ModelState.IsValid)
-        //        {
-        //            _repo.Entry(profile).State = EntityState.Modified;
-        //            _repo.SaveChanges();
-        //            return RedirectToAction("Index");
-        //        }
-        //        return View(profile);
-        //    }
-
-        //    // GET: Profile/Delete/5
-        //    public ActionResult Delete(int? id)
-        //    {
-        //        if (id == null)
-        //        {
-        //            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //        }
-        //        Profile profile = _repo.Profile.Find(id);
-        //        if (profile == null)
-        //        {
-        //            return HttpNotFound();
-        //        }
-        //        return View(profile);
-        //    }
-
-        //    // POST: Profile/Delete/5
-        //    [HttpPost, ActionName("Delete")]
-        //    [ValidateAntiForgeryToken]
-        //    public ActionResult DeleteConfirmed(int id)
-        //    {
-        //        Profile profile = _repo.Profile.Find(id);
-        //        _repo.Profile.Remove(profile);
-        //        _repo.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
+       
 
         protected override void Dispose(bool disposing)
         {
-            _repo.Dispose();
+            _repoProfile.Dispose();
+            _repoEducation.Dispose();
+            _repoEmployer.Dispose();
             base.Dispose(disposing);
         }
-        //#endregion
+
     }
 }

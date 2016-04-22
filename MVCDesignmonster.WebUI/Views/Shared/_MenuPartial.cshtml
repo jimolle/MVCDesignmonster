@@ -1,18 +1,22 @@
-﻿@*@using Microsoft.AspNet.Identity
-@if (User.IsInRole("Admin"))
+﻿@using Microsoft.AspNet.Identity
+
+@if (User.IsInRole("Admin") || User.IsInRole("Owner"))
 {
-    <h2>Admin</h2>
-}
-else if (User.IsInRole("Owner"))
-{
-    <h2>Owner</h2>
+    if (User.IsInRole("Admin"))
+    {
+        <li><span class="label label-success">Admin</span></li>
+    }
+    else if (User.IsInRole("Owner"))
+    {
+        <li><span class="label label-success">Owner</span></li>
+    }
+    <li>@Html.ActionLink("EditProfile", "Edit", "Profile")</li>
+    <li>@Html.ActionLink("EditEducations", "Index", "Education")</li>
+    <li>@Html.ActionLink("EditEmployers", "Index", "Employer")</li>
+    <li>@Html.ActionLink("SiteStats", "SessionStatsPage", "Home")</li>
+    <li>@Html.ActionLink("FileUpload", "FileUpload", "Home")</li>
 }
 else if (User.IsInRole("User"))
 {
-    <h2>User</h2>
+    <li><span class="label label-success">User</span></li>
 }
-else
-{
-    <h2>Anonymous</h2>
-}*@
-

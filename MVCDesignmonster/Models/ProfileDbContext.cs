@@ -39,7 +39,7 @@ namespace MVCDesignmonster.Models
                 Name = "Förnamn Efternamn",
                 Email = "test@test.com",
                 PublicPresentationText = "[PublicPresentationText] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at massa dolor. Nulla volutpat nisi et mi scelerisque, eget iaculis risus tristique. Morbi at tellus ligula. Integer vestibulum accumsan diam eget ullamcorper. Suspendisse dapibus est in porttitor finibus. Curabitur dictum risus nec ligula lacinia porta. Duis convallis eleifend mi id auctor. ",
-                ShowPrivatePresentationText = true,
+                ShowProfileForAnonymous = true,
                 PrivatePresentationText = "[PrivatePresentationText] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at massa dolor. Nulla volutpat nisi et mi scelerisque, eget iaculis risus tristique. Morbi at tellus ligula. Integer vestibulum accumsan diam eget ullamcorper. Suspendisse dapibus est in porttitor finibus. Curabitur dictum risus nec ligula lacinia porta. Duis convallis eleifend mi id auctor. ",
             };
             context.Profile.Add(profile);

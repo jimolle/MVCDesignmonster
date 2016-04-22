@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MVCDesignmonster.Singleton
@@ -6,23 +7,19 @@ namespace MVCDesignmonster.Singleton
     public class SessionStats
     {
         private static readonly SessionStats _instance = new SessionStats();
-        //public int SessionCount { get; private set; } = 0;
-        public List<TrackedUser> TrackedUsers { get; private set; } = new List<TrackedUser>();
+
+        public HashSet<TrackedUser> TrackedUsers { get; private set; } = new HashSet<TrackedUser>();
 
         static SessionStats()
         {
-            // Static constructor only gets called once.
-            // + No need for locks in Instance-property!?
         }
 
-        private SessionStats() { } //Redundant tror jag...
+        private SessionStats() { }
 
         public static SessionStats Instance
         {
             get
             {
-                //if (_instance == null)
-                //    _instance = new SessionStats();
                 return _instance;
             }
         }
@@ -34,29 +31,70 @@ namespace MVCDesignmonster.Singleton
                 SessionId = System.Web.HttpContext.Current.Session.SessionID,
                 UserName = "Anonymous"
             };
+
+            foreach (var user in TrackedUsers)
+            {
+                if (user.SessionId == trackedUser.SessionId)
+                    return;
+            }
+
             TrackedUsers.Add(trackedUser);
         }
 
         public void RemoveOneSession(string sessionId)
         {
-            var trackedUser = TrackedUsers.SingleOrDefault(n => n.SessionId == sessionId);
-            TrackedUsers.Remove(trackedUser);
+            try
+            {
+                var trackedUser = TrackedUsers.SingleOrDefault(n => n.SessionId == sessionId);
+                if (trackedUser == null)
+                    return;
+
+                TrackedUsers.Remove(trackedUser);
+
+            }
+            catch (Exception)
+            {
+                throw;
+                // Should log, not just throw!
+            }
         }
 
         public void LoginSession(string userName)
         {
-            var sessionId = System.Web.HttpContext.Current.Session.SessionID;
+            try
+            {
+                var sessionId = System.Web.HttpContext.Current.Session.SessionID;
 
-            var trackedUser = TrackedUsers.SingleOrDefault(n => n.SessionId == sessionId);
-            trackedUser.UserName = userName;
+                var trackedUser = TrackedUsers.SingleOrDefault(n => n.SessionId == sessionId);
+                if (trackedUser == null)
+                    return;
+
+                trackedUser.UserName = userName;
+            }
+            catch (Exception)
+            {
+                throw;
+                // Should log, not just throw!
+            }
         }
 
         public void LogoutSession(string userName)
         {
-            var sessionId = System.Web.HttpContext.Current.Session.SessionID;
+            try
+            {
+                var sessionId = System.Web.HttpContext.Current.Session.SessionID;
 
-            var trackedUser = TrackedUsers.SingleOrDefault(n => n.SessionId == sessionId);
-            trackedUser.UserName = "Anonymous";
+                var trackedUser = TrackedUsers.SingleOrDefault(n => n.SessionId == sessionId);
+                if (trackedUser == null)
+                    return;
+
+                trackedUser.UserName = "Anonymous";
+            }
+            catch (Exception)
+            {
+                throw;
+                // Should log, not just throw!
+            }
         }
 
         public string GetSessionStats()

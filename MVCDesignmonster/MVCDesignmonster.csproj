@@ -117,7 +117,6 @@
     <Compile Include="WordCount\MaxWordsAttribute.cs" />
     <Compile Include="WordCount\MinWordsAttribute.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

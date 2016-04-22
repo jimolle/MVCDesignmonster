@@ -1,0 +1,14 @@
+﻿        //With generic repo
+        //private IRepository<Profile> _repo;
+
+        //public ProfileController()
+        //{
+        //    _repo = new SqlRepository<Profile>(new ProfileDbContext());
+        //}
+
+        //public ProfileController(IRepository<Profile> profileRepo)
+        //{
+        //    _repo = profileRepo;
+        //}
+
+

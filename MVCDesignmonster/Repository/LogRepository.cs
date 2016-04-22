@@ -30,8 +30,7 @@ namespace MVCDesignmonster.Repository
 
         public IEnumerable<StatLog> GetLast100LogPosts()
         {
-            // TODO Ändra till 100
-            return _context.StatLogs.OrderByDescending(n => n.TimeStamp).Take(5);
+            return _context.StatLogs.OrderByDescending(n => n.TimeStamp).Take(100);
         }
 
         private bool disposed = false;

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
+using Microsoft.AspNet.Identity;
 
 namespace MVCDesignmonster.Singleton
 {
@@ -8,6 +10,10 @@ namespace MVCDesignmonster.Singleton
     {
         private static readonly SessionStats _instance = new SessionStats();
 
+
+        //TODO AHHHHH MÅSTE KOLLA MANUELLT SÅ INTE UserName Redan finns i TrackedUsers också! omfg
+        // TODO MÅSTE TYVÄRR SKRIVA OM DET FRÅN GRUNDEN, DET ÄR INTE STABILT ATM.
+        // OBS! Gör det enklare, behöver inte vara superrobust, rensar ju ändå upp vid session end.
         public HashSet<TrackedUser> TrackedUsers { get; private set; } = new HashSet<TrackedUser>();
 
         static SessionStats()
@@ -26,10 +32,14 @@ namespace MVCDesignmonster.Singleton
 
         public void AddOneSession()
         {
+            var username = HttpContext.Current.User.Identity.GetUserName();
+            if (username == "")
+                username = "Anonymous";
+
             var trackedUser = new TrackedUser()
             {
-                SessionId = System.Web.HttpContext.Current.Session.SessionID,
-                UserName = "Anonymous"
+                SessionId = HttpContext.Current.Session.SessionID,
+                UserName = username
             };
 
             foreach (var user in TrackedUsers)

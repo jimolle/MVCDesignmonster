@@ -244,9 +244,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Profile\Create.cshtml" />
-    <Content Include="Views\Profile\Delete.cshtml" />
-    <Content Include="Views\Profile\Details.cshtml" />
     <Content Include="Views\Profile\Edit.cshtml" />
     <Content Include="Views\Profile\PublicProfile.cshtml" />
     <Content Include="Views\Shared\_MenuPartial.cshtml" />
@@ -257,12 +254,10 @@
     <Content Include="Views\Shared\_menuOwner.cshtml" />
     <Content Include="Views\Education\Create.cshtml" />
     <Content Include="Views\Education\Delete.cshtml" />
-    <Content Include="Views\Education\Details.cshtml" />
     <Content Include="Views\Education\Edit.cshtml" />
     <Content Include="Views\Education\Index.cshtml" />
     <Content Include="Views\Employer\Create.cshtml" />
     <Content Include="Views\Employer\Delete.cshtml" />
-    <Content Include="Views\Employer\Details.cshtml" />
     <Content Include="Views\Employer\Edit.cshtml" />
     <Content Include="Views\Employer\Index.cshtml" />
     <Content Include="Views\Profile\PrivateProfile.cshtml" />

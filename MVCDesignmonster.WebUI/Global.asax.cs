@@ -12,9 +12,6 @@ namespace MVCDesignmonster.WebUI
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        // TODO Eller ska man ha en instans... troligen inte
-        //public SessionStats SessionStatsSingleTon = SessionStats.Instance;
-
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -31,7 +28,7 @@ namespace MVCDesignmonster.WebUI
         }
         void Session_End(object sender, EventArgs e)
         {
-            // Kommer åt sessionId efter det stängts, eller förlängs sessionen dessutom?
+            // Kommer åt sessionId efter det stängts
             var sessionId = this.Session.SessionID;
 
             SessionStats.Instance.RemoveOneSession(sessionId);

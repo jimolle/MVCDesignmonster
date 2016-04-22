@@ -28,7 +28,7 @@ namespace MVCDesignmonster.Models
         {
             var startpage = new Startpage()
             {
-                WelcomeTitle = "Titel för MVCDesignmonster aka ProfilSite v4.0",
+                WelcomeTitle = "MVCDesignmonster",
                 WelcomeText =
                     "[WelcomeText] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at massa dolor. Nulla volutpat nisi et mi scelerisque, eget iaculis risus tristique. Morbi at tellus ligula. Integer vestibulum accumsan diam eget ullamcorper. Suspendisse dapibus est in porttitor finibus. Curabitur dictum risus nec ligula lacinia porta. Duis convallis eleifend mi id auctor.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at massa dolor. Nulla volutpat nisi et mi scelerisque, eget iaculis risus tristique. Morbi at tellus ligula. Integer vestibulum accumsan diam eget ullamcorper. Suspendisse dapibus est in porttitor finibus. Curabitur dictum risus nec ligula lacinia porta. Duis convallis eleifend mi id auctor."
             };
@@ -38,9 +38,9 @@ namespace MVCDesignmonster.Models
             {
                 Name = "Förnamn Efternamn",
                 Email = "test@test.com",
-                PublicPresentationText = "[PublicPresentationText] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at massa dolor. Nulla volutpat nisi et mi scelerisque, eget iaculis risus tristique. Morbi at tellus ligula. Integer vestibulum accumsan diam eget ullamcorper. Suspendisse dapibus est in porttitor finibus. Curabitur dictum risus nec ligula lacinia porta. Duis convallis eleifend mi id auctor. ",
+                PublicPresentationText = "[PublicPresentationText] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at massa dolor. Nulla volutpat nisi et mi scelerisque, eget iaculis risus tristique. Morbi at tellus ligula. Integer vestibulum accumsan diam eget ullamcorper. Suspendisse dapibus est in porttitor finibus. Curabitur dictum risus nec ligula lacinia porta. Duis convallis eleifend mi id auctor. Some more words.",
                 ShowProfileForAnonymous = true,
-                PrivatePresentationText = "[PrivatePresentationText] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at massa dolor. Nulla volutpat nisi et mi scelerisque, eget iaculis risus tristique. Morbi at tellus ligula. Integer vestibulum accumsan diam eget ullamcorper. Suspendisse dapibus est in porttitor finibus. Curabitur dictum risus nec ligula lacinia porta. Duis convallis eleifend mi id auctor. ",
+                PrivatePresentationText = "[PrivatePresentationText] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at massa dolor. Nulla volutpat nisi et mi scelerisque, eget iaculis risus tristique. Morbi at tellus ligula. Integer vestibulum accumsan diam eget ullamcorper. Suspendisse dapibus est in porttitor finibus. Curabitur dictum risus nec ligula lacinia porta. Duis convallis eleifend mi id auctor. Some more words.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at massa dolor. Nulla volutpat nisi et mi scelerisque, eget iaculis risus tristique. Morbi at tellus ligula. Integer vestibulum accumsan diam eget ullamcorper. Suspendisse dapibus est in porttitor finibus. Curabitur dictum risus nec ligula lacinia porta. Duis convallis eleifend mi id auctor. Some more words. Some more words.",
             };
             context.Profile.Add(profile);
 
@@ -49,7 +49,7 @@ namespace MVCDesignmonster.Models
                 new Education()
                 {
                     Name = "DirtShoweling101",
-                    Description = "A good education about showeling dirt",
+                    Description = "A good education about showeling dirt. A good education about showeling dirt.  A good education about showeling dirt.  A good education about showeling dirt.  A good education about showeling dirt.  A good education about showeling dirt.  A good education about showeling dirt.  A good education about showeling dirt. ",
                     SchoolName = "FiveGardens",
                     StartDate = DateTime.Parse("2010-01-01"),
                     EndDate = DateTime.Parse("2011-01-01"),
@@ -58,7 +58,7 @@ namespace MVCDesignmonster.Models
                 new Education()
                 {
                     Name = "Databases101",
-                    Description = "A good education about DbContext",
+                    Description = "A good education about DbContext. A good education about DbContext. A good education about DbContext. A good education about DbContext. A good education about DbContext. A good education about DbContext. A good education about DbContext. A good education about DbContext. A good education about DbContext. A good education about DbContext. ",
                     SchoolName = "SchoolOfDatabases",
                     StartDate = DateTime.Parse("2012-01-01"),
                     EndDate = DateTime.Parse("2013-01-01"),
@@ -80,7 +80,7 @@ namespace MVCDesignmonster.Models
                 },
                 new Employer()
                 {
-                    Name = "Rädda Barnen Pakistan",
+                    Name = "Rädda Barnen",
                     StartDate = DateTime.Parse("2014-06-01"),
                     EndDate = DateTime.Parse("2014-08-31"),
                     Public = true

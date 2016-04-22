@@ -4,11 +4,11 @@
 {
     if (User.IsInRole("Admin"))
     {
-        <li><span class="label label-success">Admin</span></li>
+        <li><span class="label label-primary">Role: Admin</span></li>
     }
     else if (User.IsInRole("Owner"))
     {
-        <li><span class="label label-success">Owner</span></li>
+        <li><span class="label label-primary">Role: Owner</span></li>
     }
     <li>@Html.ActionLink("EditProfile", "Edit", "Profile")</li>
     <li>@Html.ActionLink("EditEducations", "Index", "Education")</li>
@@ -18,5 +18,5 @@
 }
 else if (User.IsInRole("User"))
 {
-    <li><span class="label label-success">User</span></li>
+    <li><span class="label label-primary">Role: User</span></li>
 }

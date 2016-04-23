@@ -11,7 +11,7 @@ namespace MVCDesignmonster.Service.Logging
 
         public LoggingServiceWriteToDb()
         {
-            _repo = new LogRepository(new ProfileDbContext());
+            _repo = new LogRepository();
         }
 
         public LoggingServiceWriteToDb(ILogRepository educationRepo)

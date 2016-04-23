@@ -5,7 +5,6 @@
 <h2>@ViewBag.Title</h2>
             <hr/>
 
-
     @using (Html.BeginForm("PicUpload", "Profile", FormMethod.Post,
         new {enctype = "multipart/form-data"}))
 
@@ -13,6 +12,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <div class="form-group">
                 <label for="file" class="control-label col-md-2">Välj profilbild:</label>
@@ -26,6 +26,9 @@
                     <input type="submit" value="Ladda upp bild!" class="btn btn-default"/>
                 </div>
             </div>
+
+            @Html.Action("PicExists")
+
 
         </div>
     }

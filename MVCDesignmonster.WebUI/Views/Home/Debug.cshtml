@@ -13,6 +13,9 @@
         <th>
             Username
         </th>
+        <th>
+            TimeStampLastActive
+        </th>
     </tr>
     @foreach (var session in Model)
     {
@@ -22,6 +25,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => session.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => session.TimeStampLastActive)
             </td>
         </tr>
     }

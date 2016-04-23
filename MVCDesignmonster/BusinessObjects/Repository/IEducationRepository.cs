@@ -11,7 +11,6 @@ namespace MVCDesignmonster.BusinessObjects.Repository
         void CreateEducation(Education education);
 
         IQueryable<Education> Search(Expression<Func<Education, bool>> predicate);
-        // Följande två metoder underlättar lite så man slipper skriva predikatet själv
         IEnumerable<Education> GetPublicEducations();
         IEnumerable<Education> GetAllEducationsEvenPrivate();
 

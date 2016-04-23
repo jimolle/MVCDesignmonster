@@ -6,112 +6,98 @@ using Microsoft.AspNet.Identity;
 
 namespace MVCDesignmonster.Service.SessionStats
 {
-    public class ActiveUserService
+    public sealed class ActiveUserService
     {
-        private static readonly ActiveUserService _instance = new ActiveUserService();
+        // TODO mark private after debug is done
+        public HashSet<TrackedUser> _trackedUsers { get; set; } = new HashSet<TrackedUser>();
 
-        public HashSet<TrackedUser> TrackedUsers { get; private set; } = new HashSet<TrackedUser>();
-
-        static ActiveUserService() { }
-
-        private ActiveUserService() { }
-
-        public static ActiveUserService Instance
+        private ActiveUserService()
         {
-            get
+        }
+
+        public static ActiveUserService Instance { get { return Nested.instance; } }
+
+        private class Nested
+        {
+            // Explicit static constructor to tell C# compiler
+            // not to mark type as beforefieldinit
+            static Nested()
             {
-                return _instance;
             }
+
+            internal static readonly ActiveUserService instance = new ActiveUserService();
         }
 
         public void AddOneSession()
         {
-            try
+            var trackedUser = new TrackedUser()
             {
-                var username = HttpContext.Current.User.Identity.GetUserName();
+                SessionId = HttpContext.Current.Session.SessionID,
+                UserName = HttpContext.Current.User.Identity.GetUserName(),
+                TimeStampLastActive = DateTime.Now
+            };
 
-                var trackedUser = new TrackedUser()
+            // TODO Lägg in något som kollar TimestampActive > 30 min typ, alltså sessioner som buggat kvar
+            var usersToRemove = new List<TrackedUser>();
+            foreach (var user in _trackedUsers)
+            {
+                if ((DateTime.Now - user.TimeStampLastActive) > TimeSpan.FromSeconds(30))
+                    usersToRemove.Add(user);
+            }
+            if (usersToRemove.Count > 0)
+            {
+                foreach (var user in usersToRemove)
                 {
-                    SessionId = HttpContext.Current.Session.SessionID,
-                    UserName = username
-                };
-
-                foreach (var user in TrackedUsers)
-                {
-                    if (user.SessionId == trackedUser.SessionId)
-                        return;
+                    _trackedUsers.Remove(user);
                 }
-
-                TrackedUsers.Add(trackedUser);
             }
-            catch (Exception)
+
+
+            foreach (var user in _trackedUsers)
             {
-                throw;
-                // Should log, not just throw!
+                if (user.SessionId == trackedUser.SessionId)
+                    return;
             }
 
+            _trackedUsers.Add(trackedUser);
         }
 
         public void RemoveOneSession(string sessionId)
         {
-            try
-            {
-                var trackedUser = TrackedUsers.FirstOrDefault(n => n.SessionId == sessionId);
-                //if (trackedUser == null)
-                //    return;
 
-                TrackedUsers.Remove(trackedUser);
+            var trackedUser = _trackedUsers.FirstOrDefault(n => n.SessionId == sessionId);
+            if (trackedUser == null)
+                return;
 
-            }
-            catch (Exception)
-            {
-                throw;
-                // Should log, not just throw!
-            }
+            _trackedUsers.Remove(trackedUser);
         }
 
         public void LoginSession(string userName)
         {
-            try
-            {
-                var sessionId = System.Web.HttpContext.Current.Session.SessionID;
+            var sessionId = System.Web.HttpContext.Current.Session.SessionID;
 
-                var trackedUser = TrackedUsers.FirstOrDefault(n => n.SessionId == sessionId);
-                if (trackedUser == null)
-                    return;
+            var trackedUser = _trackedUsers.FirstOrDefault(n => n.SessionId == sessionId);
+            if (trackedUser == null)
+                return;
 
-                trackedUser.UserName = userName;
-            }
-            catch (Exception)
-            {
-                throw;
-                // Should log, not just throw!
-            }
+            trackedUser.UserName = userName;
         }
 
         public void LogoutSession(string userName)
         {
-            try
-            {
-                var sessionId = HttpContext.Current.Session.SessionID;
+            var sessionId = HttpContext.Current.Session.SessionID;
 
-                var trackedUser = TrackedUsers.FirstOrDefault(n => n.SessionId == sessionId);
-                if (trackedUser == null)
-                    return;
+            var trackedUser = _trackedUsers.FirstOrDefault(n => n.SessionId == sessionId);
+            if (trackedUser == null)
+                return;
 
-                trackedUser.UserName = "";
-            }
-            catch (Exception)
-            {
-                throw;
-                // Should log, not just throw!
-            }
+            trackedUser.UserName = "";
         }
 
         public string GetSessionStats()
         {
-            var sessions = TrackedUsers.Count;
-            var loggedinSessions = TrackedUsers.Count(n => n.UserName != "");
+            var sessions = _trackedUsers.Count;
+            var loggedinSessions = _trackedUsers.Count(n => n.UserName != "");
 
             var sessionText = "aktiv session";
             var loggedonText = "påloggad";
@@ -124,34 +110,23 @@ namespace MVCDesignmonster.Service.SessionStats
             return $"{sessions} {sessionText} varav {loggedinSessions} {loggedonText}.";
         }
 
-    }
-
-    public class TrackedUser
-    {
-        public string SessionId { get; set; }
-        public string UserName { get; set; }
-    }
-
-
-
-    // From C# In Depth
-    public sealed class SingletonFullyLazy
-    {
-        private SingletonFullyLazy()
+        public void UpdateUserTimeStamp()
         {
-        }
+            var sessionId = HttpContext.Current.Session.SessionID;
 
-        public static SingletonFullyLazy Instance { get { return Nested.instance; } }
-
-        private class Nested
-        {
-            // Explicit static constructor to tell C# compiler
-            // not to mark type as beforefieldinit
-            static Nested()
+            var trackedUser = _trackedUsers.FirstOrDefault(n => n.SessionId == sessionId);
+            if (trackedUser == null)
             {
+                _trackedUsers.Add(new TrackedUser()
+                {
+                    SessionId = HttpContext.Current.Session.SessionID,
+                    UserName = HttpContext.Current.User.Identity.GetUserName(),
+                    TimeStampLastActive = DateTime.Now,
+                });
+                return;
             }
 
-            internal static readonly SingletonFullyLazy instance = new SingletonFullyLazy();
+            trackedUser.TimeStampLastActive = DateTime.Now;
         }
     }
 }

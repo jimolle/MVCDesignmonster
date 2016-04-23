@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
+using MVCDesignmonster.Service.SessionStats;
 
 namespace MVCDesignmonster.Service.Logging
 {
@@ -10,8 +11,14 @@ namespace MVCDesignmonster.Service.Logging
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             CheckForLogging(filterContext);
+            CheckActiveUserSessions(filterContext);
 
             base.OnActionExecuting(filterContext);
+        }
+
+        private void CheckActiveUserSessions(ActionExecutingContext filterContext)
+        {
+            ActiveUserService.Instance.UpdateUserTimeStamp();
         }
 
         private void CheckForLogging(ActionExecutingContext filterContext)

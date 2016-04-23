@@ -10,6 +10,7 @@ namespace MVCDesignmonster.Service.Logging
         {
             var path = HttpContext.Current.Server.MapPath("~/App_Data/logg.txt");
 
+            // TODO Denna överhettar ju då och då... kolla upp
             using (var fs = new FileStream(path, FileMode.Append))
             using (var sw = new StreamWriter(fs))
             {

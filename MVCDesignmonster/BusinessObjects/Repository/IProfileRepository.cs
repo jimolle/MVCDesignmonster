@@ -7,6 +7,6 @@ namespace MVCDesignmonster.BusinessObjects.Repository
     {
         Profile GetProfile();
         void UpdateProfile(Profile profile);
-        void Save();
+        //void Save();
     }
 }

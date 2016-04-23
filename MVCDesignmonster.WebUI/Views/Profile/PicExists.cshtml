@@ -1,0 +1,18 @@
+﻿@model MVCDesignmonster.WebUI.ViewModels.PicUploadViewModel
+
+            @if (@Model.ImagePath != null)
+            {
+                <div class="form-group">
+                    <label for="file" class="control-label col-md-2">Nuvarande bild:</label>
+                    <div class="col-md-10">
+                        <img class="profileImage" src="/Content/img_profile/@Model.ImagePath" alt="Profilbild"
+                             width="320"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        @Html.ActionLink("Ta bort.", "DeletePic", "Profile", routeValues: null, htmlAttributes: new { @class = "btn btn-danger" })
+                    </div>
+                </div>
+            }

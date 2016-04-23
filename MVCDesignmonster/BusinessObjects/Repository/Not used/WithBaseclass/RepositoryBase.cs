@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Data.Entity;
 
 namespace MVCDesignmonster.BusinessObjects.Repository.WithBaseclass
 {
     public abstract class RepositoryBase<TContext> : IDisposable
-        where TContext: IDisposedTracker, new()
+        where TContext: DbContext, IDisposedTracker, new()
     {
 
         private TContext _DataContext;

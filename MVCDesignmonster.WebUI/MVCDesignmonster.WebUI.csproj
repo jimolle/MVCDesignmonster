@@ -185,6 +185,7 @@
     <Compile Include="ViewModels\SessionStatsViewModel.cs" />
     <Compile Include="ViewModels\StartPageViewModel.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
+    <Compile Include="ViewModels\PicUploadViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -263,6 +264,7 @@
     <Content Include="Views\Profile\PrivateProfile.cshtml" />
     <Content Include="Views\Home\Debug.cshtml" />
     <Content Include="Views\Profile\_ProfilePic.cshtml" />
+    <Content Include="Views\Profile\PicExists.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

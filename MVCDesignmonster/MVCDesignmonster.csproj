@@ -90,6 +90,13 @@
     <Compile Include="BusinessObjects\Models\Employer.cs" />
     <Compile Include="BusinessObjects\Models\Profile.cs" />
     <Compile Include="BusinessObjects\Models\StatLog.cs" />
+    <Compile Include="BusinessObjects\Repository\IUnitOfWork.cs" />
+    <Compile Include="BusinessObjects\Repository\RepoBase.cs" />
+    <Compile Include="BusinessObjects\Repository\UnitOfWork.cs" />
+    <Compile Include="BusinessObjects\Repository\Not used\WithBaseclass\IDisposedTracker.cs" />
+    <Compile Include="BusinessObjects\Repository\Not used\WithBaseclass\RepoDbContext.cs" />
+    <Compile Include="BusinessObjects\Repository\Not used\WithBaseclass\RepositoryBase.cs" />
+    <Compile Include="BusinessObjects\Repository\Not used\WithBaseclass\StartpageRepository.cs" />
     <Compile Include="Service\Logging\ILoggingService.cs" />
     <Compile Include="Service\Logging\LoggingFilterAttribute.cs" />
     <Compile Include="Service\Logging\LoggingServiceWriteToDb.cs" />
@@ -109,11 +116,13 @@
     <Compile Include="BusinessObjects\Repository\LogRepository.cs" />
     <Compile Include="BusinessObjects\Repository\ProfileRepository.cs" />
     <Compile Include="BusinessObjects\Models\ProfileDbContext.cs" />
-    <Compile Include="BusinessObjects\Repository\Generic\SqlRepository.cs" />
+    <Compile Include="BusinessObjects\Repository\Not used\Generic\SqlRepository.cs" />
     <Compile Include="BusinessObjects\Repository\StartPageRepository.cs" />
-    <Compile Include="BusinessObjects\Repository\Generic\IRepository.cs" />
+    <Compile Include="BusinessObjects\Repository\Not used\Generic\IRepository.cs" />
     <Compile Include="Service\FakeSmsService\FakeSmsService.cs" />
     <Compile Include="Service\SessionStats\ActiveUserService.cs" />
+    <Compile Include="Service\SessionStats\ActiveUserServiceOld.cs" />
+    <Compile Include="Service\SessionStats\TrackedUser.cs" />
     <Compile Include="Service\WordCount\MaxWordsAttribute.cs" />
     <Compile Include="Service\WordCount\MinWordsAttribute.cs" />
   </ItemGroup>

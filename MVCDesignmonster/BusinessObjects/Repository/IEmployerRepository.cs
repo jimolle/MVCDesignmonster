@@ -9,8 +9,6 @@ namespace MVCDesignmonster.BusinessObjects.Repository
     public interface IEmployerRepository : IDisposable
     {
         void CreateEmployer(Employer employer);
-
-        // 2 alt att göra detta.
         IQueryable<Employer> Search(Expression<Func<Employer, bool>> predicate);
         IEnumerable<Employer> GetPublicEmployers();
         IEnumerable<Employer> GetAllEmployersEvenPrivate();

@@ -20,6 +20,13 @@ namespace MVCDesignmonster.BusinessObjects.Models
         public DbSet<Education> Educations { get; set; }
         public DbSet<Employer> Employers { get; set; }
         public DbSet<StatLog> StatLogs { get; set; }
+        //public bool IsDisposed { get; set; }
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    IsDisposed = true;
+        //    base.Dispose(disposing);
+        //}
     }
 
     public class PersonalProfileDbInitializer : DropCreateDatabaseAlways<ProfileDbContext>

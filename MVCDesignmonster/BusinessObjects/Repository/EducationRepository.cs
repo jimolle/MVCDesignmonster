@@ -7,15 +7,9 @@ using MVCDesignmonster.BusinessObjects.Models;
 
 namespace MVCDesignmonster.BusinessObjects.Repository
 {
-    public class EducationRepository : IEducationRepository
+    public class EducationRepository : RepoBase, IEducationRepository
     {
         private ProfileDbContext _context;
-
-        public EducationRepository()
-        {
-            _context = new ProfileDbContext();
-        }
-
         public EducationRepository(ProfileDbContext context)
         {
             this._context = context;
@@ -59,22 +53,22 @@ namespace MVCDesignmonster.BusinessObjects.Repository
             _context.SaveChanges();
         }
 
-        private bool disposed = false;
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed)
-            {
-                if (disposing)
-                {
-                    _context.Dispose();
-                }
-            }
-            this.disposed = true;
-        }
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+        //private bool disposed = false;
+        //protected virtual void Dispose(bool disposing)
+        //{
+        //    if (!this.disposed)
+        //    {
+        //        if (disposing)
+        //        {
+        //            DataContext.Dispose();
+        //        }
+        //    }
+        //    this.disposed = true;
+        //}
+        //public void Dispose()
+        //{
+        //    Dispose(true);
+        //    GC.SuppressFinalize(this);
+        //}
     }
 }

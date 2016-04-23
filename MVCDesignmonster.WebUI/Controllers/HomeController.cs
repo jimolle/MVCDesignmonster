@@ -29,7 +29,7 @@ namespace MVCDesignmonster.WebUI.Controllers
 
         public ActionResult Debug()
         {
-            return View(ActiveUserService.Instance.TrackedUsers);
+            return View(ActiveUserService.Instance._trackedUsers);
         }
 
         // NOT USED

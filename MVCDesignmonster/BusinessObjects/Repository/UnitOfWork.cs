@@ -14,6 +14,9 @@ namespace MVCDesignmonster.BusinessObjects.Repository
         private IEducationRepository _educationRepo;
         private IEmployerRepository _employerRepo;
 
+        private IStartpageRepository _startpageRepo;
+        private ILogRepository _logRepo;
+
         public IProfileRepository ProfileRepository
         {
             get
@@ -44,6 +47,25 @@ namespace MVCDesignmonster.BusinessObjects.Repository
             }
         }
 
+        public IStartpageRepository StartpageRepository
+        {
+            get
+            {
+                if (_startpageRepo == null)
+                    _startpageRepo = new StartPageRepository(_context);
+                return _startpageRepo;;
+            }
+        }
+
+        public ILogRepository LogRepository
+        {
+            get
+            {
+                if (_logRepo == null)
+                    _logRepo = new LogRepository(_context);
+                return _logRepo;
+            }
+        }
 
         public void Save()
         {

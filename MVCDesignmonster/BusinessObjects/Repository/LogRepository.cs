@@ -8,12 +8,12 @@ namespace MVCDesignmonster.BusinessObjects.Repository
 {
     public class LogRepository : RepoBase, ILogRepository
     {
-        //private ProfileDbContext _context;
+        private ProfileDbContext _context;
 
-        //public LogRepository(ProfileDbContext context)
-        //{
-        //    this._context = context;
-        //}
+        public LogRepository(ProfileDbContext context)
+        {
+            this._context = context;
+        }
 
         public void Log(LoggingViewModel loggingvm)
         {
@@ -24,13 +24,13 @@ namespace MVCDesignmonster.BusinessObjects.Repository
                 //Url = "/" + loggingvm.Controller + "/" + loggingvm.Action
                 Url = loggingvm.RawUrl
             };
-            DataContext.StatLogs.Add(loggingRow);
-            DataContext.SaveChanges();
+            _context.StatLogs.Add(loggingRow);
+            _context.SaveChanges();
         }
 
         public IEnumerable<StatLog> GetLast100LogPosts()
         {
-            return DataContext.StatLogs.OrderByDescending(n => n.TimeStamp).Take(100);
+            return _context.StatLogs.OrderByDescending(n => n.TimeStamp).Take(100);
         }
 
         //private bool disposed = false;

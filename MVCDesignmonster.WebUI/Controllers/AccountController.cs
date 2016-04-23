@@ -158,15 +158,16 @@ namespace MVCDesignmonster.WebUI.Controllers
 
                     if (result.Succeeded)
                     {
-                        using (var context = new ProfileDbContext())
-                        {
-                            var roleStore = new RoleStore<IdentityRole>(context);
-                            var roleManager = new RoleManager<IdentityRole>(roleStore);
+                        //using (var context = new ProfileDbContext())
+                        //{
+                            //var roleStore = new RoleStore<IdentityRole>(context);
+                            //var roleManager = new RoleManager<IdentityRole>(roleStore);
 
-                            var userStore = new UserStore<ApplicationUser>(context);
-                            var userManager = new UserManager<ApplicationUser>(userStore);
-                            userManager.AddToRole(user.Id, "User");
-                        }
+                            //var userStore = new UserStore<ApplicationUser>(context);
+                            //var userManager = new UserManager<ApplicationUser>(userStore);
+                        //}
+                        UserManager.AddToRole(user.Id, "User");
+
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771

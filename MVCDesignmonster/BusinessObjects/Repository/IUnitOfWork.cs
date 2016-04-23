@@ -8,6 +8,10 @@ namespace MVCDesignmonster.BusinessObjects.Repository
         IEducationRepository EducationRepository { get; }
         IEmployerRepository EmployerRepository { get; }
 
+        IStartpageRepository StartpageRepository { get; }
+
+        ILogRepository LogRepository { get; }
+
         void Save();
     }
 }

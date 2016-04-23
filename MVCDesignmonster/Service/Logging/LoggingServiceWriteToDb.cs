@@ -7,21 +7,21 @@ namespace MVCDesignmonster.Service.Logging
     public class LoggingServiceWriteToDb : ILoggingService
     {
         // With EducationRepository
-        private ILogRepository _repo;
+        private IUnitOfWork _unitOfWork;
 
         public LoggingServiceWriteToDb()
         {
-            _repo = new LogRepository();
+            _unitOfWork = new UnitOfWork();
         }
 
-        public LoggingServiceWriteToDb(ILogRepository educationRepo)
+        public LoggingServiceWriteToDb(IUnitOfWork unitOfWork)
         {
-            _repo = educationRepo;
+            _unitOfWork = unitOfWork;
         }
 
         public void Log(LoggingViewModel loggingViewModel)
         {
-            _repo.Log(loggingViewModel);
+            _unitOfWork.LogRepository.Log(loggingViewModel);
         }
 
         private bool disposed = false;
@@ -32,7 +32,7 @@ namespace MVCDesignmonster.Service.Logging
             {
                 if (disposing)
                 {
-                    _repo.Dispose();
+                    _unitOfWork.Dispose();
                 }
             }
             this.disposed = true;

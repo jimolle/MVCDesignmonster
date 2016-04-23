@@ -16,8 +16,8 @@ namespace MVCDesignmonster.WebUI.Controllers
     {
         private IUnitOfWork _unitOfWork;
 
-        public ProfileController() 
-            : this (new UnitOfWork())
+        public ProfileController()
+            : this(new UnitOfWork())
         { }
 
         public ProfileController(IUnitOfWork unitOfWork)
@@ -89,7 +89,7 @@ namespace MVCDesignmonster.WebUI.Controllers
             return View(viewModel);
         }
 
-       
+
         // GET: Profile/Edit/5
         [Authorize(Roles = "Admin, Owner")]
         public ActionResult Edit()
@@ -180,18 +180,16 @@ namespace MVCDesignmonster.WebUI.Controllers
         [Authorize(Roles = "Admin, Owner")]
         public ActionResult SessionStatsPage()
         {
-            using (var loggingService = new LogRepository())
-            {
-                var statLog = loggingService.GetLast100LogPosts().ToList();
-                
-                var result = new SessionStatsViewModel()
-                {
-                    SessionStats = ActiveUserService.Instance.GetSessionStats(),
-                    StatLogs = statLog
-                };
+            var statLog = _unitOfWork.LogRepository.GetLast100LogPosts().ToList();
 
-                return View(result);
-            }
+            var result = new SessionStatsViewModel()
+            {
+                SessionStats = ActiveUserService.Instance.GetSessionStats(),
+                StatLogs = statLog
+            };
+
+            return View(result);
+
         }
 
         [Authorize(Roles = "Admin, Owner")]

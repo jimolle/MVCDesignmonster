@@ -9,5 +9,7 @@ namespace MVCDesignmonster.BusinessObjects.Repository
     {
         void Log(LoggingViewModel loggingvm);
         IEnumerable<StatLog> GetLast100LogPosts();
+
+        void Save();
     }
 }

@@ -16,8 +16,8 @@ namespace MVCDesignmonster.Test.BusinessObjectsTests
 
         public EmployerRepositoryTests()
         {
-            //_repo = new EmployerRepository(new ProfileDbContext());
-            _repo = new FakeEmployerRepository();
+            _repo = new EmployerRepository(new ProfileDbContext());
+            //_repo = new FakeEmployerRepository();
         }
 
 

@@ -168,6 +168,7 @@ namespace MVCDesignmonster.WebUI.Controllers
             return RedirectToAction("PicUpload");
         }
 
+        [ChildActionOnly]
         public ActionResult PicExists()
         {
             var viewModel = new PicUploadViewModel();

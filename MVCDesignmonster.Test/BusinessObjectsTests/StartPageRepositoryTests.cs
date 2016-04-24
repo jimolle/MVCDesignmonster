@@ -12,14 +12,10 @@ namespace MVCDesignmonster.Test.BusinessObjectsTests
 
         public StartPageRepositoryTests()
         {
-            //_repo = new StartPageRepository(new ProfileDbContext());
-            _repo = new FakeStartPageRepository();
+            _repo = new StartPageRepository(new ProfileDbContext());
+            //_repo = new FakeStartPageRepository();
         }
 
-        //public StartPageRepositoryTests(IStartpageRepository startpageRepository)
-        //{
-        //    _repo = startpageRepository;
-        //}
 
         [TestMethod]
         public void GetStartpage()
@@ -35,19 +31,23 @@ namespace MVCDesignmonster.Test.BusinessObjectsTests
         }
 
         [TestMethod]
-        public void Update()
+        public void UpdateStartpage()
         {
             // Arrange
             var startpage = _repo.GetStartpage();
 
             // Act
-            var updated = "UPDATED";
-            startpage.WelcomeTitle = "UPDATED";
+            startpage.StartpageId = 1;
+            startpage.WelcomeTitle = "Test Testtitel";
+            startpage.WelcomeText =
+                "[WelcomeText] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at massa dolor. Nulla volutpat nisi et mi scelerisque, eget iaculis risus tristique. Morbi at tellus ligula. Integer vestibulum accumsan diam eget ullamcorper. Suspendisse dapibus est in porttitor finibus. Curabitur dictum risus nec ligula lacinia porta. Duis convallis eleifend mi id auctor.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at massa dolor. Nulla volutpat nisi et mi scelerisque, eget iaculis risus tristique. Morbi at tellus ligula. Integer vestibulum accumsan diam eget ullamcorper. Suspendisse dapibus est in porttitor finibus. Curabitur dictum risus nec ligula lacinia porta. Duis convallis eleifend mi id auctor.";
+
+            _repo.UpdateStartpage(startpage);
             _repo.Save();
 
 
             // Assert
-            Assert.AreEqual(updated, _repo.GetStartpage().WelcomeTitle);
+            Assert.AreEqual(startpage.WelcomeTitle, _repo.GetStartpage().WelcomeTitle);
         }
 
     }

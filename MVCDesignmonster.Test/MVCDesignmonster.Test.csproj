@@ -67,9 +67,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Fakes\FakeProfileRepository.cs" />
+    <Compile Include="BusinessObjectsTests\ProfileRepositoryTests.cs" />
     <Compile Include="Fakes\FakeStartPageRepository.cs" />
     <Compile Include="BusinessObjectsTests\StartPageRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BusinessObjectsTests\UnitOfWorkTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MVCDesignmonster\MVCDesignmonster.csproj">

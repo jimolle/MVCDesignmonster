@@ -17,6 +17,10 @@ namespace MVCDesignmonster.BusinessObjects.Repository
         private IStartpageRepository _startpageRepo;
         private ILogRepository _logRepo;
 
+        public UnitOfWork()
+        { }
+
+
         public IProfileRepository ProfileRepository
         {
             get

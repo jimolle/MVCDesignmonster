@@ -29,7 +29,8 @@ namespace MVCDesignmonster.BusinessObjects.Models
         //}
     }
 
-    public class PersonalProfileDbInitializer : DropCreateDatabaseAlways<ProfileDbContext>
+    public class PersonalProfileDbInitializer : DropCreateDatabaseIfModelChanges<ProfileDbContext>
+    //public class PersonalProfileDbInitializer : DropCreateDatabaseAlways<ProfileDbContext>
     {
         protected override void Seed(ProfileDbContext context)
         {

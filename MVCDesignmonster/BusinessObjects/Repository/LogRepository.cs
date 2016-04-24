@@ -33,6 +33,11 @@ namespace MVCDesignmonster.BusinessObjects.Repository
             return _context.StatLogs.OrderByDescending(n => n.TimeStamp).Take(100);
         }
 
+        public void Save()
+        {
+            _context.SaveChanges();
+        }
+
         //private bool disposed = false;
 
         //protected virtual void Dispose(bool disposing)

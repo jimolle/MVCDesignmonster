@@ -10,7 +10,9 @@ namespace MVCDesignmonster.BusinessObjects.Models
         [StringLength(50, MinimumLength = 1, ErrorMessage = "Måste vara mellan 1 och 50 tecken!")]
         public string Name { get; set; }
 
-        [DataType(DataType.EmailAddress)]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Ange en giltig epostadress.")]
+        //Redundant att kolla regexp, DataType.EmailAdress verkar kolla i princip samma sak...
+        //[RegularExpression(@"^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$", ErrorMessage = "Ange en giltig epostadress.")]
         public string Email { get; set; }
 
         public bool ShowProfileForAnonymous { get; set; }
@@ -22,6 +24,5 @@ namespace MVCDesignmonster.BusinessObjects.Models
         public string PrivatePresentationText { get; set; }
 
         public string ImagePath { get; set; }
-        // TODO Nån form av bild alt. bilder!?
     }
 }

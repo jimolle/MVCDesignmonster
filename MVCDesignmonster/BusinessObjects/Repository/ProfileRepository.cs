@@ -25,29 +25,10 @@ namespace MVCDesignmonster.BusinessObjects.Repository
             _context.Entry(profile).State = EntityState.Modified;
         }
 
-        //public void Save()
-        //{
-        //    _context.SaveChanges();
-        //}
+        public void Save()
+        {
+            _context.SaveChanges();
+        }
 
-        //private bool disposed = false;
-
-        //protected virtual void Dispose(bool disposing)
-        //{
-        //    if (!this.disposed)
-        //    {
-        //        if (disposing)
-        //        {
-        //            _context.Dispose();
-        //        }
-        //    }
-        //    this.disposed = true;
-        //}
-
-        //public void Dispose()
-        //{
-        //    Dispose(true);
-        //    GC.SuppressFinalize(this);
-        //}
     }
 }

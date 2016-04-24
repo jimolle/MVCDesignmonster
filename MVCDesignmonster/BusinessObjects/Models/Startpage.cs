@@ -11,9 +11,11 @@ namespace MVCDesignmonster.BusinessObjects.Models
     {
         public int StartpageId { get; set; }
         [StringLength(25, MinimumLength = 5, ErrorMessage = "Måste vara mellan 5 och 25 tecken!")]
+        [Display(Name = "Titel")]
         public string WelcomeTitle { get; set; }
         [MinWords(100, ErrorMessage = "Minst 100 ord")]
         [MaxWords(150, ErrorMessage = "Max 150 ord")]
+        [Display(Name = "Välkomnsttext")]
         public string WelcomeText { get; set; }
     }
 }

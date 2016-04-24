@@ -20,35 +20,28 @@ namespace MVCDesignmonster.BusinessObjects.Models
         public DbSet<Education> Educations { get; set; }
         public DbSet<Employer> Employers { get; set; }
         public DbSet<StatLog> StatLogs { get; set; }
-        //public bool IsDisposed { get; set; }
-
-        //protected override void Dispose(bool disposing)
-        //{
-        //    IsDisposed = true;
-        //    base.Dispose(disposing);
-        //}
     }
 
-    //public class PersonalProfileDbInitializer : DropCreateDatabaseIfModelChanges<ProfileDbContext>
-    public class PersonalProfileDbInitializer : DropCreateDatabaseAlways<ProfileDbContext>
+    public class PersonalProfileDbInitializer : DropCreateDatabaseIfModelChanges<ProfileDbContext>
+    //public class PersonalProfileDbInitializer : DropCreateDatabaseAlways<ProfileDbContext>
     {
         protected override void Seed(ProfileDbContext context)
         {
             var startpage = new Startpage()
             {
-                WelcomeTitle = "MVCDesignmonster",
+                WelcomeTitle = "Designmönster & MVC",
                 WelcomeText =
-                    "[WelcomeText] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at massa dolor. Nulla volutpat nisi et mi scelerisque, eget iaculis risus tristique. Morbi at tellus ligula. Integer vestibulum accumsan diam eget ullamcorper. Suspendisse dapibus est in porttitor finibus. Curabitur dictum risus nec ligula lacinia porta. Duis convallis eleifend mi id auctor.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at massa dolor. Nulla volutpat nisi et mi scelerisque, eget iaculis risus tristique. Morbi at tellus ligula. Integer vestibulum accumsan diam eget ullamcorper. Suspendisse dapibus est in porttitor finibus. Curabitur dictum risus nec ligula lacinia porta. Duis convallis eleifend mi id auctor."
+                    "[WelcomeText] Välkommen, consectetur adipiscing elit. Ut at massa dolor. Nulla volutpat nisi et mi scelerisque, eget iaculis risus tristique. Morbi at tellus ligula. Integer vestibulum accumsan diam eget ullamcorper. Suspendisse dapibus est in porttitor finibus. Curabitur dictum risus nec ligula lacinia porta. Duis convallis eleifend mi id auctor.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at massa dolor. Nulla volutpat nisi et mi scelerisque, eget iaculis risus tristique. Morbi at tellus ligula. Integer vestibulum accumsan diam eget ullamcorper. Suspendisse dapibus est in porttitor finibus. Curabitur dictum risus nec ligula lacinia porta. Duis convallis eleifend mi id auctor."
             };
             context.Startpage.Add(startpage);
 
             var profile = new Profile()
             {
-                Name = "Förnamn Efternamn",
+                Name = "Samuel Pettersson",
                 Email = "test@test.com",
-                PublicPresentationText = "[PublicPresentationText] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at massa dolor. Nulla volutpat nisi et mi scelerisque, eget iaculis risus tristique. Morbi at tellus ligula. Integer vestibulum accumsan diam eget ullamcorper. Suspendisse dapibus est in porttitor finibus. Curabitur dictum risus nec ligula lacinia porta. Duis convallis eleifend mi id auctor. Some more words.",
+                PublicPresentationText = "[PublicPresentationText] Detta är den publika presentationstexten, consectetur adipiscing elit. Ut at massa dolor. Nulla volutpat nisi et mi scelerisque, eget iaculis risus tristique. Morbi at tellus ligula. Integer vestibulum accumsan diam eget ullamcorper. Suspendisse dapibus est in porttitor finibus. Curabitur dictum risus nec ligula lacinia porta. Duis convallis eleifend mi id auctor. Some more words.",
                 ShowProfileForAnonymous = true,
-                PrivatePresentationText = "[PrivatePresentationText] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at massa dolor. Nulla volutpat nisi et mi scelerisque, eget iaculis risus tristique. Morbi at tellus ligula. Integer vestibulum accumsan diam eget ullamcorper. Suspendisse dapibus est in porttitor finibus. Curabitur dictum risus nec ligula lacinia porta. Duis convallis eleifend mi id auctor. Some more words.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at massa dolor. Nulla volutpat nisi et mi scelerisque, eget iaculis risus tristique. Morbi at tellus ligula. Integer vestibulum accumsan diam eget ullamcorper. Suspendisse dapibus est in porttitor finibus. Curabitur dictum risus nec ligula lacinia porta. Duis convallis eleifend mi id auctor. Some more words. Some more words.",
+                PrivatePresentationText = "[PrivatePresentationText] Detta är den privata presentationstexten, den innehåller allt den publika innehöll, samt massor av andra godbitar. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at massa dolor. Nulla volutpat nisi et mi scelerisque, eget iaculis risus tristique. Morbi at tellus ligula. Integer vestibulum accumsan diam eget ullamcorper. Suspendisse dapibus est in porttitor finibus. Curabitur dictum risus nec ligula lacinia porta. Duis convallis eleifend mi id auctor. Some more words.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at massa dolor. Nulla volutpat nisi et mi scelerisque, eget iaculis risus tristique. Morbi at tellus ligula. Integer vestibulum accumsan diam eget ullamcorper. Suspendisse dapibus est in porttitor finibus. Curabitur dictum risus nec ligula lacinia porta. Duis convallis eleifend mi id auctor. Some more words. Some more words.",
             };
             context.Profile.Add(profile);
 
@@ -56,9 +49,9 @@ namespace MVCDesignmonster.BusinessObjects.Models
             {
                 new Education()
                 {
-                    Name = "DirtShoweling101",
-                    Description = "A good education about showeling dirt. A good education about showeling dirt.  A good education about showeling dirt.  A good education about showeling dirt.  A good education about showeling dirt.  A good education about showeling dirt.  A good education about showeling dirt.  A good education about showeling dirt. ",
-                    SchoolName = "FiveGardens",
+                    Name = "Utbildning",
+                    Description = "A good education about educating.A good education about educating. A good education about educating. A good education about educating. A good education about educating. A good education about educating. A good education about educating. A good education about educating. A good education about educating. A good education about educating.",
+                    SchoolName = "Statens läroverk",
                     StartDate = DateTime.Parse("2010-01-01"),
                     EndDate = DateTime.Parse("2011-01-01"),
                     Public = true
@@ -88,9 +81,16 @@ namespace MVCDesignmonster.BusinessObjects.Models
                 },
                 new Employer()
                 {
-                    Name = "Rädda Barnen",
+                    Name = "MOL Shipping",
                     StartDate = DateTime.Parse("2014-06-01"),
                     EndDate = DateTime.Parse("2014-08-31"),
+                    Public = false
+                },
+                new Employer()
+                {
+                    Name = "Parkförvaltningen",
+                    StartDate = DateTime.Parse("2015-06-01"),
+                    EndDate = null,
                     Public = false
                 }
             };

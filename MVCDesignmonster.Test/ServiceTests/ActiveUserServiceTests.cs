@@ -1,10 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MVCDesignmonster.BusinessObjects.Models;
-using MVCDesignmonster.BusinessObjects.Repository;
 using MVCDesignmonster.Service.SessionStats;
-using MVCDesignmonster.Test.Fakes;
 
-namespace MVCDesignmonster.Test.BusinessObjectsTests
+namespace MVCDesignmonster.Test.ServiceTests
 {
     [TestClass]
     public class ActiveUserServiceTests

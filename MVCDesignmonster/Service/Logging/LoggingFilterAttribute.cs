@@ -29,7 +29,7 @@ namespace MVCDesignmonster.Service.Logging
                 if (HttpContext.Current.User.Identity.IsAuthenticated)
                     userName = HttpContext.Current.User.Identity.Name;
 
-                // hårdkodat för att slippa statistik från admin
+                // hårdkoda ev. för att slippa statistik från admin
                 //if (userName == "admin@admin.com")
                 //    return;
 

@@ -36,7 +36,7 @@ namespace MVCDesignmonster.Test.BusinessObjectsTests
         public void UpdateEducation()
         {
             // Arrange
-            var educ = _repo.GetAllEducationsEvenPrivate().SingleOrDefault(n => n.EducationId == 1);
+            var educ = _repo.GetAllEducationsEvenPrivate().SingleOrDefault(n => n.EducationId == 2);
 
 
             // Act
@@ -53,7 +53,7 @@ namespace MVCDesignmonster.Test.BusinessObjectsTests
 
 
             // Assert
-            Assert.AreEqual(educ.SchoolName, _repo.GetAllEducationsEvenPrivate().SingleOrDefault(n => n.EducationId == 1).SchoolName);
+            Assert.AreEqual(educ.SchoolName, _repo.GetAllEducationsEvenPrivate().SingleOrDefault(n => n.EducationId == 2).SchoolName);
         }
 
         [TestMethod]

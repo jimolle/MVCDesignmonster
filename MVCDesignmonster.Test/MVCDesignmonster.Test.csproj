@@ -67,7 +67,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="BusinessObjectsTests\EmployerRepositoryTests.cs" />
     <Compile Include="BusinessObjectsTests\EducationRepositoryTests.cs" />
+    <Compile Include="Fakes\FakeEmployerRepository.cs" />
     <Compile Include="Fakes\FakeEducationRepository.cs" />
     <Compile Include="Fakes\FakeProfileRepository.cs" />
     <Compile Include="BusinessObjectsTests\ProfileRepositoryTests.cs" />

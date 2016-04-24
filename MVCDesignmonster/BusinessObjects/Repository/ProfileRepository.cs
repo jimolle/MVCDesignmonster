@@ -7,7 +7,6 @@ namespace MVCDesignmonster.BusinessObjects.Repository
 {
     public class ProfileRepository : RepoBase, IProfileRepository
     {
-        private ProfileDbContext _context;
         public ProfileRepository(ProfileDbContext context)
         {
             this._context = context;

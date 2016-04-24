@@ -20,11 +20,10 @@
     <div class="col-md-6">
         <h2>BUGS</h2>
         <ul>
-            <li class="alert alert-danger">Verkar som om databaskopplingen inte alltid stängs ordentligt, blir ibland problem om man gör en ny build utan att manuellt stänga databaskopplingen i VS...</li>
-            <li class="alert alert-danger">Med nuvarande repos så öppnar den en separat DbContext för varje repo jag instansierar! Här hade det ju varit något med UoW-pattern...</li>
-            <li class="alert alert-danger">Man hade kunnat sätta upp modellerna med relationer till varandra, hade nog underlättat, men provade utan för att se fördelar/nackdelar med det.</li>
+            <li class="alert alert-danger">När man kör dropcreatealways blir det problem med att databaskopplingen öppnas i VS, men funkar bra när man kör dropcreateifmodelchanged...</li>
             <li class="alert alert-danger">Ibland blir filloggern överhettad och kastar exception (används av en annan process, kanske dispose problem?).</li>
-            <li class="alert alert-success">ActiveUserService Seems to be OK. OBS! Timout session & cookie = 1 ATM.</li>
+            <li class="alert alert-danger">ActiveUserService; OBS! Timout session & cookie = 1 ATM. Fixa till deploy-värden.</li>
+            <li class="alert alert-success">Modellera med navigational properties kändes överflödigt med tanke på att det bara kan finnas en profil.</li>
         </ul>
     </div>
 

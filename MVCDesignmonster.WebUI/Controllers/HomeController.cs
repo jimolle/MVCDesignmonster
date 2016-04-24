@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.Mvc;
 using MVCDesignmonster.BusinessObjects.Models;
 using MVCDesignmonster.BusinessObjects.Repository;
+using MVCDesignmonster.BusinessObjects.Repository.Generic;
 using MVCDesignmonster.Service.SessionStats;
 using MVCDesignmonster.WebUI.ViewModels;
 
@@ -11,25 +12,35 @@ namespace MVCDesignmonster.WebUI.Controllers
 {
     public class HomeController : Controller
     {
-        // TODO repon i konstruktor
+        private IStartpageRepository _repo;
+
+        public HomeController()
+        {
+            _repo = new StartPageRepository(new ProfileDbContext());
+        }
+
+        public HomeController(IStartpageRepository repo)
+        {
+            _repo = repo;
+        }
 
 
         public ActionResult Index()
         {
-            var viewModel = new StartPageViewModel();
-            using (var repo = new StartPageRepository(new ProfileDbContext()))
+            var viewModel = new StartPageViewModel()
             {
-                viewModel.WelcomeText = repo.GetStartpage().WelcomeText;
-                viewModel.WelcomeTitle = repo.GetStartpage().WelcomeTitle;
-            }
+                WelcomeText = _repo.GetStartpage().WelcomeText,
+                WelcomeTitle = _repo.GetStartpage().WelcomeTitle,
+            };
 
             return View(viewModel);
         }
 
 
-        public ActionResult Debug()
+        protected override void Dispose(bool disposing)
         {
-            return View(ActiveUserService.Instance._trackedUsers);
+            _repo.Dispose();
+            base.Dispose(disposing);
         }
 
         // NOT USED

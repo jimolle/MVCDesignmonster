@@ -8,7 +8,6 @@ namespace MVCDesignmonster.BusinessObjects.Repository
 {
     public class LogRepository : RepoBase, ILogRepository
     {
-        private ProfileDbContext _context;
 
         public LogRepository(ProfileDbContext context)
         {
@@ -38,24 +37,6 @@ namespace MVCDesignmonster.BusinessObjects.Repository
             _context.SaveChanges();
         }
 
-        //private bool disposed = false;
 
-        //protected virtual void Dispose(bool disposing)
-        //{
-        //    if (!this.disposed)
-        //    {
-        //        if (disposing)
-        //        {
-        //            DataContext.Dispose();
-        //        }
-        //    }
-        //    this.disposed = true;
-        //}
-
-        //public void Dispose()
-        //{
-        //    Dispose(true);
-        //    GC.SuppressFinalize(this);
-        //}
     }
 }

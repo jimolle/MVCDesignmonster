@@ -37,11 +37,11 @@ namespace MVCDesignmonster.Service.SessionStats
                 TimeStampLastActive = DateTime.Now
             };
 
-            // TODO Lägg in något som kollar TimestampActive > 30 min typ, alltså sessioner som buggat kvar
+            // Rensar sessioner som mot förmodan buggat kvar
             var usersToRemove = new List<TrackedUser>();
             foreach (var user in _trackedUsers)
             {
-                if ((DateTime.Now - user.TimeStampLastActive) > TimeSpan.FromSeconds(30))
+                if ((DateTime.Now - user.TimeStampLastActive) > TimeSpan.FromMinutes(30))
                     usersToRemove.Add(user);
             }
             if (usersToRemove.Count > 0)

@@ -5,9 +5,8 @@ using MVCDesignmonster.BusinessObjects.Models;
 
 namespace MVCDesignmonster.BusinessObjects.Repository
 {
-    public class StartPageRepository : IStartpageRepository
+    public class StartPageRepository : RepoBase, IStartpageRepository
     {
-        private ProfileDbContext _context;
         public StartPageRepository()
         {
             _context = new ProfileDbContext();
@@ -45,10 +44,6 @@ namespace MVCDesignmonster.BusinessObjects.Repository
             }
             this.disposed = true;
         }
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+
     }
 }

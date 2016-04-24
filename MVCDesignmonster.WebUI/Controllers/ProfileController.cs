@@ -12,6 +12,7 @@ using MVCDesignmonster.WebUI.ViewModels;
 namespace MVCDesignmonster.WebUI.Controllers
 {
     [Route("Profil/{action}")]
+    [Route("Profile/{action}")]
     public class ProfileController : Controller
     {
         private IUnitOfWork _unitOfWork;
@@ -24,27 +25,6 @@ namespace MVCDesignmonster.WebUI.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-
-        //// With ProfileRepository
-        //private readonly IProfileRepository _repoProfile;
-        //private readonly IEducationRepository _repoEducation;
-        //private readonly IEmployerRepository _repoEmployer;
-
-        //public ProfileController()
-        //    : this (null, null, null)
-        //{
-        //    //_repoProfile = new ProfileRepository();
-        //    //_repoEducation = new EducationRepository();
-        //    //_repoEmployer = new EmployerRepository();
-
-        //}
-
-        //public ProfileController(IProfileRepository profileRepo, IEducationRepository educationRepo, IEmployerRepository employerRepo)
-        //{
-        //    _repoProfile = profileRepo ?? new ProfileRepository();
-        //    _repoEducation = educationRepo ?? new EducationRepository();
-        //    _repoEmployer = employerRepo ?? new EmployerRepository();
-        //}
 
 
         // GET: Profile
@@ -164,32 +144,9 @@ namespace MVCDesignmonster.WebUI.Controllers
                 profile.ImagePath = pic;
                 _unitOfWork.Save();
 
-
-                // or you can send image directly to database
-                // in-case if you want to store byte[] ie. for DB
-                //using (MemoryStream ms = new MemoryStream())
-                //{
-                //    file.InputStream.CopyTo(ms);
-                //    byte[] array = ms.GetBuffer();
-                //}
             }
 
             return RedirectToAction("Index");
-        }
-
-        [Authorize(Roles = "Admin, Owner")]
-        public ActionResult SessionStatsPage()
-        {
-            var statLog = _unitOfWork.LogRepository.GetLast100LogPosts().ToList();
-
-            var result = new SessionStatsViewModel()
-            {
-                SessionStats = ActiveUserService.Instance.GetSessionStats(),
-                StatLogs = statLog
-            };
-
-            return View(result);
-
         }
 
         [Authorize(Roles = "Admin, Owner")]
@@ -226,14 +183,31 @@ namespace MVCDesignmonster.WebUI.Controllers
             return PartialView(viewModel);
         }
 
+        [Authorize(Roles = "Admin, Owner")]
+        public ActionResult SiteStatsPage()
+        {
+            var statLog = _unitOfWork.LogRepository.GetLast100LogPosts().ToList();
+
+            var result = new SessionStatsViewModel()
+            {
+                SessionStats = ActiveUserService.Instance.GetSessionStats(),
+                StatLogs = statLog
+            };
+
+            return View(result);
+        }
+
+        [Authorize(Roles = "Admin, Owner")]
+        public ActionResult Debug()
+        {
+            return View(ActiveUserService.Instance._trackedUsers);
+        }
+        
+
         protected override void Dispose(bool disposing)
         {
             _unitOfWork.Dispose();
-            //_repoProfile.Dispose();
-            //_repoEducation.Dispose();
-            //_repoEmployer.Dispose();
             base.Dispose(disposing);
         }
-
     }
 }

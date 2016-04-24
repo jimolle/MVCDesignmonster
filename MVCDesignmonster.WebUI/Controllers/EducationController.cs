@@ -25,11 +25,6 @@ namespace MVCDesignmonster.WebUI.Controllers
         // GET: Education
         public ActionResult Index()
         {
-            // TODO Check if user is authorized
-            if (User.IsInRole("Admin"))
-            {
-                // Can change stuff bla bla
-            }
             return View(_repo.GetAllEducationsEvenPrivate());
         }
 

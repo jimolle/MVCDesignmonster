@@ -45,7 +45,7 @@ namespace MVCDesignmonster.Service.Logging
                 var listOfLoggers = new List<ILoggingService>()
                 {
                     new LoggingServiceWriteToDb(),
-                    new LoggingServiceWriteToFile()
+                    //new LoggingServiceWriteToFile()
                 };
 
                 foreach (var logger in listOfLoggers)

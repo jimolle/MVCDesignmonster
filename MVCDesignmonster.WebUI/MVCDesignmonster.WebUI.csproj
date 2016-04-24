@@ -223,7 +223,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Profile\SessionStatsPage.cshtml" />
+    <Content Include="Views\Profile\SiteStatsPage.cshtml" />
     <Content Include="Views\Profile\PicUpload.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -262,7 +262,7 @@
     <Content Include="Views\Employer\Edit.cshtml" />
     <Content Include="Views\Employer\Index.cshtml" />
     <Content Include="Views\Profile\PrivateProfile.cshtml" />
-    <Content Include="Views\Home\Debug.cshtml" />
+    <Content Include="Views\Profile\Debug.cshtml" />
     <Content Include="Views\Profile\_ProfilePic.cshtml" />
     <Content Include="Views\Profile\PicExists.cshtml" />
   </ItemGroup>

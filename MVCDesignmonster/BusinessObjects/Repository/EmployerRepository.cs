@@ -9,7 +9,7 @@ namespace MVCDesignmonster.BusinessObjects.Repository
 {
     public class EmployerRepository : RepoBase, IEmployerRepository
     {
-        private ProfileDbContext _context;
+
         public EmployerRepository(ProfileDbContext context)
         {
             _context = context;
@@ -53,22 +53,5 @@ namespace MVCDesignmonster.BusinessObjects.Repository
             _context.SaveChanges();
         }
 
-        //private bool disposed = false;
-        //protected virtual void Dispose(bool disposing)
-        //{
-        //    if (!this.disposed)
-        //    {
-        //        if (disposing)
-        //        {
-        //            DataContext.Dispose();
-        //        }
-        //    }
-        //    this.disposed = true;
-        //}
-        //public void Dispose()
-        //{
-        //    Dispose(true);
-        //    GC.SuppressFinalize(this);
-        //}
     }
 }

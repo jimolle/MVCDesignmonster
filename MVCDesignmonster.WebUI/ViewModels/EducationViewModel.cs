@@ -7,7 +7,6 @@ using MVCDesignmonster.Service.WordCount;
 
 namespace MVCDesignmonster.WebUI.ViewModels
 {
-    // TODO NOT IMPLEMENTED ViewModels yet...
     public class EducationViewModel
     {
         public int EducationId { get; set; }

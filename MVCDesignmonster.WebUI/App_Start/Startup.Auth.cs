@@ -36,7 +36,7 @@ namespace MVCDesignmonster.WebUI
 
                 // TODO Mek för att få ActiveUserService att stämma
                 SlidingExpiration = true,
-                ExpireTimeSpan = TimeSpan.FromMinutes(1)
+                ExpireTimeSpan = TimeSpan.FromMinutes(20)
             });            
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 

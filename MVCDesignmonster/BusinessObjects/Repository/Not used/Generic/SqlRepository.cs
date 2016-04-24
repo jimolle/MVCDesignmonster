@@ -3,11 +3,11 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace MVCDesignmonster.BusinessObjects.Repository.Generic
+namespace MVCDesignmonster.BusinessObjects.Repository.Not_used.Generic
 {
     // GENERIC SQL REPO
     public class SqlRepository<T> : IRepository<T>
-        where T : class
+        where T : DbContext
     {
         private DbSet<T> _context;
 

@@ -4,7 +4,6 @@ using System.Web;
 using System.Web.Mvc;
 using MVCDesignmonster.BusinessObjects.Models;
 using MVCDesignmonster.BusinessObjects.Repository;
-using MVCDesignmonster.BusinessObjects.Repository.Generic;
 using MVCDesignmonster.Service.SessionStats;
 using MVCDesignmonster.WebUI.ViewModels;
 

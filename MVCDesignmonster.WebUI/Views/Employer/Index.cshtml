@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<MVCDesignmonster.BusinessObjects.Models.Employer>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Arbetsgivare";
 }
 
-<h2>Index</h2>
+<h2>Arbetsgivare</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Skapa ny", "Create")
 </p>
 <table class="table">
     <tr>
@@ -41,8 +41,8 @@
             @Html.DisplayFor(modelItem => item.Public)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EmployerId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EmployerId })
+            @Html.ActionLink("Editera", "Edit", new { id=item.EmployerId }) |
+            @Html.ActionLink("Ta bort", "Delete", new { id=item.EmployerId })
         </td>
     </tr>
 }

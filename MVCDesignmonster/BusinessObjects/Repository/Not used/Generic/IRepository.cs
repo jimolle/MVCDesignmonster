@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace MVCDesignmonster.BusinessObjects.Repository.Generic
+namespace MVCDesignmonster.BusinessObjects.Repository.Not_used.Generic
 {
     public interface IRepository<T>
     {

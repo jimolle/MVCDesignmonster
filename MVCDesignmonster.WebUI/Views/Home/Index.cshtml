@@ -10,26 +10,3 @@
 
     <p>@Html.ActionLink("Se min profil!", "Index", "Profile", null, new { @class = "btn btn-success btn-lg" })</p>
 </div>
-
-<div class="row">
-    <div class="col-md-6">
-        <h2>Testing MinWords attribute</h2>
-        <h3>...</h3>
-
-    </div>
-    <div class="col-md-6">
-        <h2>BUGS</h2>
-        <ul>
-            <li class="alert alert-danger">När man kör dropcreatealways blir det problem med att databaskopplingen öppnas i VS, men funkar bra när man kör dropcreateifmodelchanged...</li>
-            <li class="alert alert-danger">Ibland blir filloggern överhettad och kastar exception (används av en annan process, kanske dispose problem?).</li>
-            <li class="alert alert-danger">ActiveUserService; OBS! Timout session & cookie = 1 ATM. Fixa till deploy-värden.</li>
-            <li class="alert alert-success">Modellera med navigational properties kändes överflödigt med tanke på att det bara kan finnas en profil.</li>
-        </ul>
-    </div>
-
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    <script src="~/Scripts/App/CustomValidators.js"></script>
-}

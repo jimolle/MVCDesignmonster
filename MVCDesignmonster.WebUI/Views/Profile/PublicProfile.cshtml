@@ -9,14 +9,6 @@
     <h2>Profil för @Model.Profile.Name</h2>
     <p>Email: @Html.DisplayFor(modelItem => @Model.Profile.Email)</p>
     <p class="largeFont">@Html.DisplayFor(modelItem => @Model.Profile.PrivatePresentationText)</p>
-
-
-    <p>
-        [DEBUG] Showing this presentation for Anonymous?
-        @Html.DisplayFor(modelItem => @Model.Profile.ShowProfileForAnonymous)
-    </p>
-
-
 </div>
 @Html.ActionLink("Vänligen logga in för att se en utförligare presentation.", "Login", "Account", null, new { @class = "label label-info" })
 
@@ -40,9 +32,6 @@
         <th>
             Beskrivning
         </th>
-        <th>
-            Publik?
-        </th>
     </tr>
     @foreach (var education in Model.Educations)
     {
@@ -62,9 +51,6 @@
             <td>
                 @Html.DisplayFor(modelItem => education.Description)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => education.Public)
-            </td>
         </tr>
     }
 </table>
@@ -83,9 +69,6 @@
         <th>
             Avslutades
         </th>
-        <th>
-            Publik?
-        </th>
     </tr>
     @foreach (var employer in Model.Employers)
     {
@@ -98,9 +81,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => employer.EndDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => employer.Public)
             </td>
         </tr>
     }

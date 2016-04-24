@@ -32,6 +32,12 @@ namespace MVCDesignmonster.WebUI
             ActiveUserService.Instance.RemoveOneSession(sessionId);
         }
 
+        //protected void Application_Error(object sender, EventArgs e)
+        //{
+        //    var exception = Server.GetLastError();
+        //    Server.ClearError();
+        //    Response.Redirect("/Error/Error");
+        //}
        
     }
 }

@@ -29,8 +29,8 @@ namespace MVCDesignmonster.BusinessObjects.Models
         //}
     }
 
-    public class PersonalProfileDbInitializer : DropCreateDatabaseIfModelChanges<ProfileDbContext>
-    //public class PersonalProfileDbInitializer : DropCreateDatabaseAlways<ProfileDbContext>
+    //public class PersonalProfileDbInitializer : DropCreateDatabaseIfModelChanges<ProfileDbContext>
+    public class PersonalProfileDbInitializer : DropCreateDatabaseAlways<ProfileDbContext>
     {
         protected override void Seed(ProfileDbContext context)
         {
@@ -70,7 +70,7 @@ namespace MVCDesignmonster.BusinessObjects.Models
                     SchoolName = "SchoolOfDatabases",
                     StartDate = DateTime.Parse("2012-01-01"),
                     EndDate = DateTime.Parse("2013-01-01"),
-                    Public = true
+                    Public = false
                 }
             };
             foreach (var education in educations)
@@ -91,7 +91,7 @@ namespace MVCDesignmonster.BusinessObjects.Models
                     Name = "Rädda Barnen",
                     StartDate = DateTime.Parse("2014-06-01"),
                     EndDate = DateTime.Parse("2014-08-31"),
-                    Public = true
+                    Public = false
                 }
             };
             foreach (var employer in employers)

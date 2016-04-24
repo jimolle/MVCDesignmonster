@@ -13,8 +13,8 @@ namespace MVCDesignmonster.Test.BusinessObjectsTests
 
         public StartPageRepositoryTests()
         {
-            _repo = new StartPageRepository(new ProfileDbContext());
-            //_repo = new FakeStartPageRepository();
+            //_repo = new StartPageRepository(new ProfileDbContext());
+            _repo = new FakeStartPageRepository();
         }
 
 

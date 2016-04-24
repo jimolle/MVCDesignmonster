@@ -16,7 +16,7 @@ namespace MVCDesignmonster.BusinessObjects.Models
         [DataType(DataType.Date)]
         [Display(Name = "Avslutades")]
         public DateTime? EndDate { get; set; }
-        [Display(Name = "Public")]
+        [Display(Name = "Publik?")]
         public bool Public { get; set; }
     }
 }

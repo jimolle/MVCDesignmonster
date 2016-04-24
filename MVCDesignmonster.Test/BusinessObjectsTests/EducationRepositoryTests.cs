@@ -14,8 +14,8 @@ namespace MVCDesignmonster.Test.BusinessObjectsTests
 
         public EducationRepositoryTests()
         {
-            _repo = new EducationRepository(new ProfileDbContext());
-            //_repo = new FakeEducationRepository();
+            //_repo = new EducationRepository(new ProfileDbContext());
+            _repo = new FakeEducationRepository();
         }
 
 

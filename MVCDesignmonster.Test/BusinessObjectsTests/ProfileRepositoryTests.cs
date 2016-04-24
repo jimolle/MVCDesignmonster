@@ -13,8 +13,8 @@ namespace MVCDesignmonster.Test.BusinessObjectsTests
 
         public ProfileRepositoryTests()
         {
-            _repo = new ProfileRepository(new ProfileDbContext());
-            //_repo = new FakeProfileRepository();
+            //_repo = new ProfileRepository(new ProfileDbContext());
+            _repo = new FakeProfileRepository();
         }
 
 

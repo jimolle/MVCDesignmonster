@@ -15,8 +15,8 @@ namespace MVCDesignmonster.Test.BusinessObjectsTests
 
         public LogRepositoryTests()
         {
-            _repo = new LogRepository(new ProfileDbContext());
-            //_repo = new FakeLogPageRepository();
+            //_repo = new LogRepository(new ProfileDbContext());
+            _repo = new FakeLogPageRepository();
         }
 
 

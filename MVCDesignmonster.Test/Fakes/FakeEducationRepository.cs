@@ -7,7 +7,7 @@ using MVCDesignmonster.BusinessObjects.Repository;
 
 namespace MVCDesignmonster.Test.Fakes
 {
-    public class FakeEducationRepository
+    public class FakeEducationRepository : IEducationRepository
     {
         private List<Education> _context = new List<Education>();
 
@@ -86,5 +86,9 @@ namespace MVCDesignmonster.Test.Fakes
             // do nothing
         }
 
+        public void Dispose()
+        {
+            // do nothing
+        }
     }
 }

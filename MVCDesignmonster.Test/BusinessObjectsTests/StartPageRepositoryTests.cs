@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MVCDesignmonster.BusinessObjects.Models;
 using MVCDesignmonster.BusinessObjects.Repository;
 using MVCDesignmonster.Test.Fakes;
@@ -51,4 +52,5 @@ namespace MVCDesignmonster.Test.BusinessObjectsTests
         }
 
     }
+    
 }

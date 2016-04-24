@@ -76,9 +76,6 @@ namespace MVCDesignmonster.Test.BusinessObjectsTests
             _repo.CreateEducation(newEduc);
             _repo.Save();
 
-
-            var debug = _repo.GetAllEducationsEvenPrivate().Where(n => n.Name == "NewEducation");
-
             // Assert
             Assert.AreEqual(newEduc.Name, _repo.GetAllEducationsEvenPrivate().SingleOrDefault(n => n.Name == "NewEducation").Name);
         }

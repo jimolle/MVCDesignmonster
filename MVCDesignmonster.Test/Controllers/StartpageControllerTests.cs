@@ -25,6 +25,5 @@ namespace MVCDesignmonster.Test.Controllers
             // Assert
             Assert.IsNotNull(result);
         }
-        
     }
 }

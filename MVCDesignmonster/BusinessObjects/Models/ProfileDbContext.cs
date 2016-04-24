@@ -22,8 +22,8 @@ namespace MVCDesignmonster.BusinessObjects.Models
         public DbSet<StatLog> StatLogs { get; set; }
     }
 
-    public class PersonalProfileDbInitializer : DropCreateDatabaseIfModelChanges<ProfileDbContext>
-    //public class PersonalProfileDbInitializer : DropCreateDatabaseAlways<ProfileDbContext>
+    //public class PersonalProfileDbInitializer : DropCreateDatabaseIfModelChanges<ProfileDbContext>
+    public class PersonalProfileDbInitializer : DropCreateDatabaseAlways<ProfileDbContext>
     {
         protected override void Seed(ProfileDbContext context)
         {
